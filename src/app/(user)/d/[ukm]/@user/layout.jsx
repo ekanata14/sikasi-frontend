@@ -1,6 +1,7 @@
 import { Navbar } from "~/components/navigation-bar";
 import React from "react";
 import { cn } from "~/lib/utils";
+import { Backdrop } from "~/components/backdrop";
 
 export default function Layout({ children }) {
   const Data = {
@@ -46,6 +47,7 @@ export default function Layout({ children }) {
         { children }
       </div>
       <Navbar className={"lg:order-1"} data={Data} />
+      <Backdrop/>
     </div>
   ) 
 }
