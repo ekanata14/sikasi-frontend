@@ -28,6 +28,7 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
     return (
         <nav className={cn("w-full h-20 z-30", "fixed bottom-0", "lg:bottom-auto lg:top-2 lg:left-0", "lg:items-end lg:justify-center lg:flex lg:static lg:h-16", className)} ref={ref}>
             <div className={cn("w-full h-3/4 justify-center flex", "lg:justify-between lg:max-w-6xl")}>
+                {/* Mobile Profile */}
                 <div className={cn("bg-slate-900 h-full w-11/12 rounded-md grid grid-cols-4 px-4 py-2 text-white fill-white", 
                     "lg:flex lg:bg-transparent lg:text-black lg:fill-slate-900 lg:max-w-md lg:px-0 lg:gap-10")}>
                     <Link href="/d/ksl" className={cn("w-full h-10 flex justify-center items-center", "lg:h-8 lg:w-fit")}>
@@ -76,7 +77,7 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                                 </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                                <Link href="" className="p-2">
+                                <Link href="/profile/edit" className="p-2">
                                     Settings
                                 </Link>
                             </DropdownMenuItem>
@@ -120,7 +121,7 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                                 </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                                <Link href="" className="p-2">
+                                <Link href="/profile/edit" className="p-2">
                                     Settings
                                 </Link>
                             </DropdownMenuItem>

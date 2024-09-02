@@ -1,43 +1,9 @@
 import { CircleDollarSign, Wallet } from "lucide-react";
 import { Card } from "~/components/ui/card";
+import { Data } from "~/data/data";
 import { cn } from "~/lib/utils";
 
 export default function UkmPage() {
-  const Data = {
-    ukm: {
-      abbreviation: "KSL",
-      cashUser: "Rp. 90.000",
-      totalCash: "Rp. 2.000.000",
-      activities: [
-        {
-          id: "1",
-          name: "Pelatihan",
-          date: "14 September 2024",
-          timeStart: "15.00",
-          timeEnd: "18.00",
-        },
-        {
-          id: "2",
-          name: "Pelatihan",
-          date: "16 September 2024",
-          timeStart: "15.00",
-          timeEnd: "18.00",
-        },
-        {
-          id: "3",
-          name: "Pelatihan",
-          date: "18 September 2024",
-          timeStart: "15.00",
-          timeEnd: "18.00",
-        },
-      ],
-    },
-    user: {
-      name: "Mr.kesal",
-      role: "Pengurus UKM",
-    },
-  };
-
   const ActivitiesCard = Data.ukm.activities.map((activities) => (
     <Card
       key={activities.id}
@@ -83,7 +49,7 @@ export default function UkmPage() {
               size={48}
               className="w-full self-center mb-4"
             />
-            <h4 className="text-2xl font-semibold mb-4">{Data.ukm.cashUser}</h4>
+            <h4 className="text-xl font-semibold mb-4">{Data.ukm.cashUser}</h4>
             <p className={"text-base px-4 font-medium"}>Total belum dibayarkan</p>
           </Card>
           <Card className="bg-green-500 py-6 px-2 text-white text-center">
@@ -91,8 +57,8 @@ export default function UkmPage() {
               size={48}
               className="w-full self-center mb-4"
             />
-            <h4 className="text-2xl font-semibold mb-4">{Data.ukm.totalCash}</h4>
-            <p className={"text-base px-4 font-medium"}>Total belum dibayarkan</p>
+            <h4 className="text-xl font-semibold mb-4">{Data.ukm.totalCash}</h4>
+            <p className={"text-base px-4 font-medium"}>Total sudah dibayarkan</p>
           </Card>
         </div>
         <p className="mb-5">Kas merupakan kewajiban yang dibayar oleh setiap unit anggota dari organisasi. Kas akan digunakan sebagai dana yang digunakan organisasi dalam operasionalnya seperti perlombaan ataupun kegiatan.</p>

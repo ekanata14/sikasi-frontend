@@ -2,44 +2,9 @@ import { Navbar } from "~/components/navigation-bar";
 import React from "react";
 import { cn } from "~/lib/utils";
 import { Backdrop } from "~/components/backdrop";
+import { Data } from "~/data/data";
 
 export default function Layout({ children }) {
-  const Data = {
-    ukm: {
-      abbreviation: "KSL",
-      cashUser: "Rp. 90.000",
-      totalCash: "Rp. 2.000.000",
-      logo: "/assets/images/ksl.png",
-      activities: [
-        {
-          id: "1",
-          name: "Pelatihan",
-          date: "14 September 2024",
-          timeStart: "15.00",
-          timeEnd: "18.00",
-        },
-        {
-          id: "2",
-          name: "Pelatihan",
-          date: "16 September 2024",
-          timeStart: "15.00",
-          timeEnd: "18.00",
-        },
-        {
-          id: "3",
-          name: "Pelatihan",
-          date: "18 September 2024",
-          timeStart: "15.00",
-          timeEnd: "18.00",
-        },
-      ],
-    },
-    user: {
-      name: "Mr.kesal",
-      role: "Pengurus UKM",
-    }
-  }
-
   return(
     <div className="lg:grid">
       <div className={cn("w-full", "lg:max-w-6xl lg:order-2 lg:mx-auto")}>

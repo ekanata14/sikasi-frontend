@@ -1,4 +1,9 @@
 import React from 'react';
+import { Button } from '~/components/ui/button';
+import { FormControl } from '~/components/ui/form';
+import { Input } from '~/components/ui/input';
+import { Label } from '~/components/ui/label';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '~/components/ui/select';
 import {
   Table,
   TableBody,
@@ -7,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { Data } from '~/data/data';
 import { cn } from '~/lib/utils';
 
 export default async function CashPage() {
@@ -48,37 +54,54 @@ export default async function CashPage() {
   }
 
   return (
-    <main className={cn("w-full flex flex-col gap-4 min-h-screen")}>
+    <main className={cn("w-full px-4 flex flex-col gap-4 min-h-screen")}>
       {/* Section 1: Bagian Activities dan Header */}
       <section>
-        <div className={cn("pt-8 pb-4 px-4")}>
+        <div className={cn("pt-8 pb-4")}>
           <h1 className={cn("font-bold text-lg")}>KAS UKM {Temp.ukm.abbreviation}</h1>
           <p className="text-sm">Halo {Temp.user.name}, berikut adalah rekapan pendaftaran mengenai kas anda. Silahkan hubungi bendahara jika terjadi kesalahan data.</p>
         </div>
       </section>
 
+      {/* Section 2: Tabel Kas */}
       <section>
+        <Label htmlFor="search">Urutkan sesuai</Label>
+        <div className="flex w-full max-w-sm items-center space-x-2">
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Default" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="terbaru">Terbaru</SelectItem>
+                <SelectItem value="terlama">Terlawas</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
         <Table>
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableCell>No</TableCell>
-              <TableCell>Nama Kegiatan</TableCell>
               <TableCell>Tanggal</TableCell>
-              <TableCell>Waktu Mulai</TableCell>
-              <TableCell>Waktu Selesai</TableCell>
+              <TableCell>NIM</TableCell>
+              <TableCell>Nama</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Jumlah</TableCell>
+              <TableCell>Aksi</TableCell>
             </TableRow>
-            <TableBody>
-              {Temp.ukm.activities.map((activity, index) => (
-                <TableRow key={activity.id}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{activity.name}</TableCell>
-                  <TableCell>{activity.date}</TableCell>
-                  <TableCell>{activity.timeStart}</TableCell>
-                  <TableCell>{activity.timeEnd}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </TableHead>
+          </TableHeader>
+          <TableBody>
+            {Data.ukm.mrKesal.map((cash) => (
+              <TableRow key={cash.nim}>
+                <TableCell>{cash.date}</TableCell>
+                <TableCell>{cash.nim}</TableCell>
+                <TableCell>{cash.name}</TableCell>
+                <TableCell>{cash.status}</TableCell>
+                <TableCell>{cash.amount}</TableCell>
+                <TableCell>Edit|Delete</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
         </Table>
       </section>
 
