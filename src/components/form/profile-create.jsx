@@ -159,7 +159,7 @@ const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
           )}
         />
 
-        <Button variant="stikom" type="submit">Submit</Button>
+        <Button variant="stikom" type="submit">Simpan</Button>
       </form>
     </Form>
   );

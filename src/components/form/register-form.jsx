@@ -92,7 +92,7 @@ const RegisterForm = React.forwardRef(({ className, ...props }, ref) => {
           )}
         />
 
-        <Button className={cn("w-full bg-blue-500 hover:bg-blue-400")} type="submit">Submit</Button>
+        <Button className={cn("w-full bg-blue-500 hover:bg-blue-400")} type="submit">Simpan</Button>
       </form>
     </Form>
   );

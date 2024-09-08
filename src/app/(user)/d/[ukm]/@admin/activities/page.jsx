@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import QRScanner from "~/components/qrcode/qr-scanner";
 import { Button } from "~/components/ui/button";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "~/components/ui/table";
 import { Data } from "~/data/data";
@@ -22,7 +23,7 @@ const ActivitesPage = () => {
           <Link href={"activities/create"}>
             <Button>Tambah Aktivitas</Button>
           </Link>
-          <Button>Absensi</Button>
+          <QRScanner/>
         </div>
         <Table>
           <TableHeader>
@@ -43,7 +44,7 @@ const ActivitesPage = () => {
                 <TableCell>{activity.date}</TableCell>
                 <TableCell>{activity.timeStart}</TableCell>
                 <TableCell>{activity.timeEnd}</TableCell>
-                <TableCell>Edit|Delete</TableCell>
+                <TableCell>Ubah|Hapus</TableCell>
               </TableRow>
             ))}
           </TableBody>

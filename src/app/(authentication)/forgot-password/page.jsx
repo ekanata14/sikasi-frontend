@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
                         <Input type="email" name="email" placeholder="Ketikan Email" />
                     </div>
                     <div>
-                        <Button type="submit" className="w-full bg-blue-500 shadow-md hover:bg-blue-400">Submit</Button>
+                        <Button type="submit" className="w-full bg-blue-500 shadow-md hover:bg-blue-400">Simpan</Button>
                     </div>
                 </form>
 

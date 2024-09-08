@@ -98,7 +98,7 @@ export default async function CashPage() {
                 <TableCell>{cash.name}</TableCell>
                 <TableCell>{cash.status}</TableCell>
                 <TableCell>{cash.amount}</TableCell>
-                <TableCell>Edit|Delete</TableCell>
+                <TableCell>Ubah|Hapus</TableCell>
               </TableRow>
             ))}
           </TableBody>

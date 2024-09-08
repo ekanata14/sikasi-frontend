@@ -173,7 +173,7 @@ const ActivitiesCreateForm = React.forwardRef(({ className, ...props }, ref) => 
             )}
           />
         </div>
-        <Button className={cn("w-full")} type="submit">Submit</Button>
+        <Button className={cn("w-full")} type="submit">Simpan</Button>
       </form>
     </Form>
   );

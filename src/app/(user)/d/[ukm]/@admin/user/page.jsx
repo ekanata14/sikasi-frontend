@@ -39,7 +39,7 @@ const UserPage = () => {
                   <TableCell>{user.nim}</TableCell>
                   <TableCell>{user.status}</TableCell>
                   <TableCell>{user.created_at}</TableCell>
-                  <TableCell>Edit|Delete</TableCell>
+                  <TableCell>Ubah|Hapus</TableCell>
                 </TableRow>
               ))}
             </TableBody>
