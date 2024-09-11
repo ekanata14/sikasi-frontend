@@ -13,10 +13,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
-    screens: {
-      xs: "360px",
-    },
     extend: {
+      screens: {
+        xs: "360px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
