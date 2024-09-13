@@ -12,7 +12,7 @@ export default function Layout({ children }) {
         { children }
       </div>
       <Navbar className={"lg:order-1"} data={Data} />
-      <Backdrop/>
+      {/* <Backdrop/> */}
     </div>
-  ) 
+  ); 
 }

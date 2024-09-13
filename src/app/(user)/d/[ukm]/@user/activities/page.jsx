@@ -17,7 +17,7 @@ export default function ActivitiesPage() {
   );
 
   return (
-    <main className={cn("w-full flex flex-col gap-4 min-h-screen")}>
+    <main className={cn("w-full flex flex-col gap-4")}>
       {/* Section 1: Bagian Activities dan Header */}
       <section>
         <div className={cn("pt-8 pb-4 px-4")}>

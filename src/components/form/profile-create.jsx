@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import * as React from "react";
 
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -13,18 +13,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/ui/form"
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
+} from "~/components/ui/form";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "~/components/ui/select"
-import { toast } from "~/components/ui/use-toast"
-import { cn } from "~/lib/utils";
+} from "~/components/ui/select";
+import { toast } from "~/components/ui/use-toast";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_MIME_TYPES = ["image/jpeg", "image/jpg", "image/png"];
@@ -37,12 +36,12 @@ const formSchema = z.object({
   picture: z.any()
   .refine((files) => {
     return files?.[0]?.size <= MAX_FILE_SIZE;
-  }, `foto wajib diisi (maksimal adalah 5MB)`)
+  }, "foto wajib diisi (maksimal adalah 5MB)")
   .refine(
     (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
     "hanya menerima file dengan format .jpg, .jpeg, .png."
   ),
-})
+});
 
 const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
   const form = useForm({
@@ -64,7 +63,7 @@ const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    })
+    });
   }
 
   return (
@@ -164,7 +163,8 @@ const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
     </Form>
   );
 
-})
+});
+
 ProfileCreateForm.displayName = "ProfileCreateForm";
 
 export default ProfileCreateForm;

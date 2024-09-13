@@ -1,25 +1,15 @@
-import React, { act } from 'react';
+import React from "react";
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card"
-import { cn } from '~/lib/utils';
-import { Data } from '~/data/data';
-import { Bar } from 'react-chartjs-2';
-import 'chart.js/auto';
-import Chart from '~/components/chart/chart';
+} from "~/components/ui/card";
+import { cn } from "~/lib/utils";
+import { Data } from "~/data/data";
+import "chart.js/auto";
+import Chart from "~/components/chart/chart";
 
 export default function DashboardAdmin() {
-
-  const ActivitiesCard = Data.ukm.activities.map((activities) =>
-    <div key={activities.id}>
-      {activities.name}
-    </div>
-  );
 
   return (
     <main className={cn("px-5 w-full min-h-screen")}>

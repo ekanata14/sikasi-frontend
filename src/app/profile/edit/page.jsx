@@ -9,7 +9,7 @@ export default function RegisterPage() {
   return (
     <section className="flex flex-col lg:grid lg:grid-cols-2">
       {/* Container */}
-      <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit max-h-screen">
+      <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit ">
         {/* Logo */}
         <Image
           className="mx-auto"

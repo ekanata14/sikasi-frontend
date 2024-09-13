@@ -1,13 +1,4 @@
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
-import Image from 'next/image'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/ui/select"
+import Image from "next/image";
 import ProfileCreateForm from "~/components/form/profile-create";
 import { cn } from "~/lib/utils";
 import { Backdrop } from "~/components/backdrop";
@@ -16,7 +7,7 @@ export default function ForgotPasswordPage() {
   return (
     <section className={cn("min-h-screen flex flex-col","lg:grid lg:grid-cols-2")}>
       {/* Container */}
-      <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit max-h-screen">
+      <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit">
         {/* Logo */}
         <Image
           className="mx-auto"

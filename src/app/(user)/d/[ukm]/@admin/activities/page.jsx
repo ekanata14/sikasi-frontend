@@ -8,7 +8,7 @@ import { cn } from "~/lib/utils";
 
 const ActivitesPage = () => {
   return (
-    <main className={cn("px-5 w-full min-h-screen")}>
+    <main className={cn("px-5 w-full")}>
       {/* Header */}
       <header className={cn("pt-20 pb-2")}>
         <h1 className="font-bold text-lg">Manajemen Aktivitas UKM</h1>

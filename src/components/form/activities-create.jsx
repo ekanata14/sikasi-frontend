@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import * as React from "react";
 
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -13,20 +13,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/ui/form"
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
+} from "~/components/ui/form";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 
-import { CalendarIcon } from "lucide-react"
-import { Calendar } from "~/components/ui/calendar"
+import { CalendarIcon } from "lucide-react";
+import { Calendar } from "~/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "~/components/ui/popover"
-import { toast } from "~/components/ui/use-toast"
+} from "~/components/ui/popover";
+import { toast } from "~/components/ui/use-toast";
 import { cn } from "~/lib/utils";
-import { format } from "date-fns"
+import { format } from "date-fns";
 
 const formSchema = z.object({
   name: z.string().min(2).max(20),
@@ -39,7 +39,7 @@ const formSchema = z.object({
   endtime: z.string().time({
     required_error: "Waktu selesai diperlukan.",
   })
-})
+});
 
 const ActivitiesCreateForm = React.forwardRef(({ className, ...props }, ref) => {
   const form = useForm({
@@ -57,7 +57,7 @@ const ActivitiesCreateForm = React.forwardRef(({ className, ...props }, ref) => 
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    })
+    });
   }
 
   return (
@@ -178,7 +178,8 @@ const ActivitiesCreateForm = React.forwardRef(({ className, ...props }, ref) => 
     </Form>
   );
 
-})
+});
+
 ActivitiesCreateForm.displayName = "ActivitiesCreateForm";
 
 export default ActivitiesCreateForm;

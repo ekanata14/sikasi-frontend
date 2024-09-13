@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import * as React from "react";
 
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -13,22 +13,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/ui/form"
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
+} from "~/components/ui/form";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "~/components/ui/select"
-import { toast } from "~/components/ui/use-toast"
-import { cn } from "~/lib/utils";
+} from "~/components/ui/select";
+import { toast } from "~/components/ui/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2).max(20),
-})
+});
 
 const ProfileEditForm = React.forwardRef(({ className, ...props }, ref) => {
   const form = useForm({
@@ -46,7 +45,7 @@ const ProfileEditForm = React.forwardRef(({ className, ...props }, ref) => {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    })
+    });
   }
 
   return (
@@ -146,7 +145,8 @@ const ProfileEditForm = React.forwardRef(({ className, ...props }, ref) => {
     </Form>
   );
 
-})
+});
+
 ProfileEditForm.displayName = "ProfileEditForm";
 
 export default ProfileEditForm;

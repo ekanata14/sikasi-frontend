@@ -1,9 +1,10 @@
-import { AspectRatio } from "~/components/ui/aspect-ratio"
-import Link from 'next/link'
-import Image from 'next/image'
+import { AspectRatio } from "~/components/ui/aspect-ratio";
+import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import { Backdrop } from "~/components/backdrop";
-import { LogOut } from "lucide-react";
+import { ListPlus, LogOut } from "lucide-react";
+import { cn } from "~/lib/utils";
 
 export default function RegisterPage() {
   // Dummy data - UKM
@@ -20,17 +21,17 @@ export default function RegisterPage() {
       abbreviation: "PROGRES",
       name: "Programming of Stikom",
     },
-  ]
+  ];
 
   // Dummy data - Auth Name
   const Auth = {
     name: "Mr.Kesal"
-  }
+  };
 
   // Dummy callback function
   const UKMCard = UKM.map(ukm => 
     <Link href="/d/ksl" key={ukm.abbreviation} >
-      <AspectRatio ratio={16 / 7} className="bg-white w-full rounded-md shadow-md p-2">
+      <AspectRatio ratio={16 / 7} className="bg-white w-full rounded-md shadow-md p-2 hover:text-blue-500 hover:bg-slate-100 m-1">
         <div className="grid grid-cols-5 h-full items-center">
           <div className="col-span-2 flex justify-center items-center">
             <Image
@@ -51,10 +52,10 @@ export default function RegisterPage() {
   );
 
   return (
-    <>
+    <main className={cn("grid pt-10 gap-4", "lg:block")}>
       {/* Container */}
-      <div className="max-w-80 lg:max-w-7xl py-10 mx-auto grid h-full lg:flex lg:flex-col gap-4 relative">
-        <Link href={"#"} className="absolute top-8 right-0 text-red-500 flex font-semibold">
+      <div className={cn("max-w-80 mx-auto grid h-full gap-4 relative", "lg:max-w-7xl lg:flex lg:flex-col lg:bg-white lg:px-8 lg:py-10 lg:rounded-md lg:shadow-md")}>
+        <Link href={"#"} className="absolute lg:top-8 lg:right-8 text-red-500 flex font-semibold">
           <LogOut />Logout
         </Link>
 
@@ -69,18 +70,19 @@ export default function RegisterPage() {
 
         {/* Page Header */}
         <header>
-          <h1 className="font-bold text-lg">Selamat Datang, {Auth.name}</h1>
+          <h1 className="font-bold text-lg">Selamat Datang Kembali, {Auth.name}</h1>
           <p className="text-sm">
-            Pilih salah satu UKM untuk melihat data anda pada UKM tersebut
+            Pilih salah satu UKM untuk melihat data anda pada UKM terdaftar.
           </p>
         </header>
 
         {/* Card Section */}
-        <section className="h-full lg:h-fit w-full rounded-sm bg-gray-100 lg:bg-transparent flex flex-col gap-4 overflow-y-scroll lg:overflow-auto lg:grid lg:grid-cols-4">
+        <section className={cn("h-full lg:h-fit w-full rounded-sm flex flex-col gap-4", "lg:grid lg:grid-cols-4 lg:bg-gray-100 lg:bg-transparent")}>
             {UKMCard}
-            <Link href="/d/ksl">
-              <AspectRatio ratio={16 / 7} className="bg-white w-full rounded-md p-4">
-                <span className="font-medium w-full h-full flex justify-center items-center border-gray-800 shadow-md border-dashed border-2 rounded-md">
+            <Link href="">
+              <AspectRatio ratio={16 / 7} className={cn("bg-white w-full m-1 p-4 rounded-md shadow-md", "hover:bg-slate-100 hover:text-blue-500")}>
+                <span className="font-medium w-full h-full flex justify-center items-center border-gray-800 hover:border-blue-500 border-dashed border-2 rounded-md">
+                  <ListPlus className="mr-2" />
                   Tambah UKM
                 </span>
               </AspectRatio>
@@ -89,8 +91,8 @@ export default function RegisterPage() {
       </div>
 
       {/* Backdrop Container */}
-      <Backdrop/>
+      <Backdrop container={cn("", "lg:absolute lg:min-h-[110vh] lg:opacity-60 lg:top-0 rotate-180 lg:-z-10")}/>
 
-    </>
+    </main>
   );
 }

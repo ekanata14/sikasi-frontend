@@ -1,23 +1,17 @@
-import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
-import Link from 'next/link'
-import Image from 'next/image'
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import Link from "next/link";
 import React from "react";
-import { Backdrop } from "~/components/backdrop";
+import { AppIcon } from "~/components/app-icon";
 
 export default function ForgotPasswordPage() {
     return (
-        <section className="overflow-x-hidden h-screen flex flex-col lg:grid lg:grid-cols-2">
+        <main className="overflow-x-hidden flex flex-col">
             {/* Container */}
-            <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit max-h-screen">
+            <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit ">
+
                 {/* Logo */}
-                <Image
-                    className="mx-auto"
-                    src="/assets/images/stikom_logo.png"
-                    width={250}
-                    height={300}
-                    alt="Logo Stikom"
-                />
+                <AppIcon className={"w-3/4"}/>
 
                 {/* Page Header */}
                 <header>
@@ -42,11 +36,7 @@ export default function ForgotPasswordPage() {
                 <Button asChild className="bg-transparent text-blue-500 inline border-none p-0 text-center">
                     <Link href="/login" className="p-0 hover:bg-transparent text-base h-auto">Kembali</Link>
                 </Button>
-
             </div>
-
-            {/* Backdrop Container */}
-            <Backdrop/>
-        </section>
+        </main>
     );
 }

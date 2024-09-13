@@ -1,9 +1,6 @@
-import React from 'react';
-import { Button } from '~/components/ui/button';
-import { FormControl } from '~/components/ui/form';
-import { Input } from '~/components/ui/input';
-import { Label } from '~/components/ui/label';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '~/components/ui/select';
+import React from "react";
+import { Label } from "~/components/ui/label";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "~/components/ui/select";
 import {
   Table,
   TableBody,
@@ -12,8 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
-import { Data } from '~/data/data';
-import { cn } from '~/lib/utils';
+import { Data } from "~/data/data";
+import { cn } from "~/lib/utils";
 
 export default async function CashPage() {
 
@@ -51,10 +48,10 @@ export default async function CashPage() {
       name: "Mr.kesal",
       role: "Pengurus UKM",
     }
-  }
+  };
 
   return (
-    <main className={cn("w-full px-4 flex flex-col gap-4 min-h-screen")}>
+    <main className={cn("w-full px-4 flex flex-col gap-4")}>
       {/* Section 1: Bagian Activities dan Header */}
       <section>
         <div className={cn("pt-8 pb-4")}>
