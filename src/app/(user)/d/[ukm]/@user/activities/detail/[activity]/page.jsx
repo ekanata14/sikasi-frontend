@@ -1,6 +1,6 @@
 import { Check, X } from "lucide-react";
 import React from "react";
-import ChartAbsence from "~/components/chart/chart-absence";
+// import ChartAbsence from "~/components/chart/chart-absence";
 import QRAbsence from "~/components/qrcode/qr-absence";
 import { Data } from "~/data/data";
 import { cn } from "~/lib/utils";
@@ -53,7 +53,7 @@ const DetailPage = () => {
         </div>
         <div>
           <p className={cn("font-light text-sm lg:text-center")}>Data Absensi Kehadiran</p>
-          <ChartAbsence />
+          {/* <ChartAbsence /> */}
         </div>
       </section>
     </main>

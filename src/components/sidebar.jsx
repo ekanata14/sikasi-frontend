@@ -1,61 +1,67 @@
-import React from "react";
-import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-  } from "./ui/sheet"
-import { cn } from "~/lib/utils";
-import Image from "next/image";
-import { Data } from "~/data/data";
-import Link from "next/link";
+"use client";
 
-const Sidebar = React.forwardRef(({ className, ...props}, ref) => {
-    const { CurrentParams } = props;
+import React from "react";
+import { cn } from "~/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { CalendarDays, Home, LineChart, Users } from "lucide-react";
+import { Badge } from "./ui/badge";
+import { Data } from "~/data/data";
+
+const Sidebar = React.forwardRef(({ className, ...props }, ref) => {
+    const currentData = Data.ukm.abbreviation;
+    const currentPath = "/d/" + currentData.toLocaleLowerCase();
+    const pathname = usePathname().split("/").pop();
+    
     return (
-        <>
-            <Sheet>
-                <SheetTrigger className={cn("p-2 bg-slate-900 rounded-lg m-4", "fixed top-0 right-0")}>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="45px" viewBox="0 -960 960 960" width="45px" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-                </SheetTrigger>
-                <SheetContent side={'left'}>
-                    <SheetHeader>
-                    <SheetTitle>SIKASI - ADMIN</SheetTitle>
-                    <SheetDescription className={cn("w-full grid justify-center")}>
-                        <Image className="rounded-full" width={150} height={150} src={"/assets/images/bruce-mars.jpeg"} alt="profile_pic" />
-                    </SheetDescription>
-                    <div className={cn("w-full grid justify-center")}>
-                        <p className={cn("font-bold text-slate-900 text-lg")}>
-                            {Data.user.name}
-                        </p>
-                        <p className={cn("text-slate-900")}>
-                            {Data.user.role}
-                        </p>
-                    </div>
-                    <section className={cn("pt-4 grid gap-3")}>
-                        <Link className={cn("w-full py-3 bg-blue-500 font-medium text-white px-16 rounded-md")} href={"/d/"+CurrentParams.ukm}>
-                            Dashboard
-                        </Link>
-                        <Link className={cn("w-full py-3 bg-blue-500 font-medium text-white px-16 rounded-md")} href={"/d/"+CurrentParams.ukm+"/activities"}>
-                            Aktivitas
-                        </Link>
-                        <Link className={cn("w-full py-3 bg-blue-500 font-medium text-white px-16 rounded-md")} href={"/d/"+CurrentParams.ukm+"/cash"}>
-                            KAS
-                        </Link>
-                        <Link className={cn("w-full py-3 bg-blue-500 font-medium text-white px-16 rounded-md")} href={"/d/"+CurrentParams.ukm+"/user"}>
-                            User
-                        </Link>
-                        <Link className={cn("w-full py-3 bg-red-500 font-medium text-white px-16 rounded-md")} href={"#"}>
-                            Kembali
-                        </Link>
-                    </section>
-                    </SheetHeader>
-                </SheetContent>
-            </Sheet>
-        </>
-    )
+        <div className="flex-1">
+            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+                <Link
+                    href={currentPath}
+                    className={cn(
+                        "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary",
+                        pathname === currentData.toLocaleLowerCase() ? "bg-muted text-primary" : "text-muted-foreground "
+                    )}
+                >
+                    <Home className="h-4 w-4" />
+                    Dashboard
+                </Link>
+                <Link
+                    href={currentPath + "/activities"}
+                    className={cn(
+                        "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary",
+                        pathname === "activities" ? "bg-muted text-primary" : "text-muted-foreground "
+                    )}
+                >
+                    <CalendarDays className="h-4 w-4" />
+                    Aktivitas
+                </Link>
+                <Link
+                    href={currentPath + "/users"}
+                    className={cn(
+                        "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary",
+                        pathname === "users" ? "bg-muted text-primary" : "text-muted-foreground "
+                    )}
+                >
+                    <Users className="h-4 w-4" />
+                    Pengguna{" "}
+                    <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                        2
+                    </Badge>
+                </Link>
+                <Link
+                    href={currentPath + "/cash"}
+                    className={cn(
+                        "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary",
+                        pathname === "cash" ? "bg-muted text-primary" : "text-muted-foreground "
+                    )}
+                >
+                    <LineChart className="h-4 w-4" />
+                    Kas UKM
+                </Link>
+            </nav>
+        </div>
+    );
 });
 Sidebar.displayName = "Sidebar";
 

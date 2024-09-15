@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import {
@@ -10,7 +10,7 @@ import {
     DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import Image from "next/image";
-import { cn } from "~/lib/utils"
+import { cn } from "~/lib/utils";
 import Link from "next/link";
 
 const Navbar = React.forwardRef(({ className, ...props }, ref) => {
@@ -20,7 +20,7 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
             <p className={cn("scroll-m-20 text-xs p-1 font-semibold tracking-tight text-inherit hidden", "lg:block")}>
                 {children}
             </p>
-        )
+        );
     };
 
     const { data } = props;
@@ -135,8 +135,8 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                 </div>
             </div>
         </nav>
-    )
-})
+    );
+});
 Navbar.displayName = "Navbar";
 
 export { Navbar };
