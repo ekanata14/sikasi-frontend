@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { TrendingUp } from "lucide-react"
-import { Label, Pie, PieChart } from "recharts"
+import * as React from "react";
+import { TrendingUp } from "lucide-react";
+import { Label, Pie, PieChart } from "recharts";
 
 import {
   Card,
@@ -11,22 +11,22 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card"
+} from "~/components/ui/card";
 import {
   // @ts-ignore
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "~/components/ui/chart"
+} from "~/components/ui/chart";
 
-export const description = "A donut chart with text"
+export const description = "A donut chart with text";
 
 const chartData = [
   { datatype: "activeMember", member: 275, fill: "var(--color-activeMember)" },
   { datatype: "nonActiveMember", member: 200, fill: "var(--color-nonActiveMember)" },
   { datatype: "pending", member: 20, fill: "var(--color-pending)" },
-]
+];
 
 const chartConfig = {
   activeMember: {
@@ -41,12 +41,12 @@ const chartConfig = {
     label: "Pengajuan",
     color: "hsl(var(--chart-1))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
-export default function Component() {
+const ChartUser = () => {
   const totalMember = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.member, 0)
-  }, [])
+    return chartData.reduce((acc, curr) => acc + curr.member, 0);
+  }, []);
 
   return (
     // @ts-ignore
@@ -105,7 +105,7 @@ export default function Component() {
                           Pengguna
                         </tspan>
                       </text>
-                    )
+                    );
                   }
                 }}
               />
@@ -123,5 +123,8 @@ export default function Component() {
         </div>
       </CardFooter>
     </Card>
-  )
-}
+  );
+};
+ChartUser.displayName = "ChartUser";
+
+export default ChartUser;

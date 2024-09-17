@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
-import { Badge } from "~/components/ui/badge"
-import { Button } from "~/components/ui/button"
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card"
+} from "~/components/ui/card";
 import {
   Table,
   TableBody,
@@ -19,9 +19,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "~/components/ui/table"
-import React from "react"
-import { usePathname } from "next/navigation"
+} from "~/components/ui/table";
+import React from "react";
+import { usePathname } from "next/navigation";
 
 const ActivitiesCard = React.forwardRef(({ className, ...props }, ref) => {
   const currentPath = usePathname().split("/").pop();
@@ -53,7 +53,7 @@ const ActivitiesCard = React.forwardRef(({ className, ...props }, ref) => {
           </TableHeader>
           <TableBody>
             {data.ukm.activities.map((item) => (
-              <TableRow>
+              <TableRow key={item.id}>
                 <TableCell>
                   <div className="font-medium">{item.name}</div>
                   <div className="hidden text-sm text-muted-foreground md:inline">

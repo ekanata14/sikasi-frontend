@@ -8,8 +8,8 @@ const AppIcon = React.forwardRef(({ className, ...props }, ref) => {
       <Image
         className={cn("mx-auto w-auto h-auto", className)}
         src="/assets/images/stikom_logo.png"
-        width={200}
-        height={200}
+        width={640}
+        height={386}
         priority={true}
         alt="Logo Stikom"
         {...props}

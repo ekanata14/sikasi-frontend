@@ -17,12 +17,12 @@ import {
   ChartTooltipContent,
 } from "~/components/ui/chart";
 
-export default function ChartUser() {
+export default function ChartCash() {
   return (
     <Card className="lg:max-w-xl h-fit">
       <CardHeader className="space-y-0 pb-2">
         <CardDescription>Total Kas Tahun 2024</CardDescription>
-        <CardTitle className="text-4xl tabular-nums">
+        <CardTitle className="text-4xl">
           {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(300000)}
         </CardTitle>
       </CardHeader>
