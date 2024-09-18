@@ -49,10 +49,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
+          <h2 className={"mb-3 text-2xl font-semibold"}>
             Docs <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Find in-depth information about Next.js features and API.</p>
+          <p className={"m-0 max-w-[30ch] text-sm opacity-50"}>Find in-depth information about Next.js features and API.</p>
         </a>
 
         <a
@@ -61,10 +61,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
+          <h2 className={"mb-3 text-2xl font-semibold"}>
             Learn <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
+          <p className={"m-0 max-w-[30ch] text-sm opacity-50"}>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
         </a>
 
         <a
@@ -73,10 +73,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
+          <h2 className={"mb-3 text-2xl font-semibold"}>
             Templates <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Explore starter templates for Next.js.</p>
+          <p className={"m-0 max-w-[30ch] text-sm opacity-50"}>Explore starter templates for Next.js.</p>
         </a>
 
         <a
@@ -85,10 +85,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
+          <h2 className={"mb-3 text-2xl font-semibold"}>
             Deploy <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>Instantly deploy your Next.js site to a shareable URL with Vercel.</p>
+          <p className={"m-0 max-w-[30ch] text-sm opacity-50 text-balance"}>Instantly deploy your Next.js site to a shareable URL with Vercel.</p>
         </a>
       </div>
     </main>

@@ -29,7 +29,7 @@ export default function LoginPage() {
         {/* Create Account btn */}
         <div className="gap-2 flex font-medium">
           Tidak memiliki akun?
-          <Link href="/register" className="p-0 hover:bg-transparent text-blue-500 text-base h-auto">Daftar disini</Link>
+          <Link href="/register" className="p-0 hover:bg-transparent text-blue-600 text-base h-auto">Daftar disini</Link>
         </div>
       </div>
     </main>

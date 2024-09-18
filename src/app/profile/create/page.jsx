@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { AppIcon } from "~/components/icon";
 import ProfileCreateForm from "~/components/form/profile-create";
 import { cn } from "~/lib/utils";
 import { Backdrop } from "~/components/backdrop";
@@ -9,13 +9,7 @@ export default function ForgotPasswordPage() {
       {/* Container */}
       <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit">
         {/* Logo */}
-        <Image
-          className="mx-auto"
-          src="/assets/images/stikom_logo.png"
-          width={250}
-          height={300}
-          alt="Logo Stikom"
-        />
+        <AppIcon />
 
         {/* Page Header */}
         <header>

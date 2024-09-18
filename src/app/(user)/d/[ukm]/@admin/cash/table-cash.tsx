@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
           className="max-w-sm col-span-3"
         />
         {/* @ts-ignore */}
-        <Button className="max-w-sm space-x-2"><Printer /><span className="hidden lg:block">Cetak</span></Button>
+        <Button aria-label="Cetak" className="max-w-sm space-x-2"><Printer /><span className="hidden lg:block">Cetak</span></Button>
       </div>
       <div className="rounded-md border w-full overflow-scroll lg:w-auto lg:overflow-visible">
         {/* @ts-ignore */}

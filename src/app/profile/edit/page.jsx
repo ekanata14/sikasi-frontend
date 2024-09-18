@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import React from "react";
 import ProfileEditForm from "~/components/form/profile-edit";
 import Link from "next/link";
 import { cn } from "~/lib/utils";
-import { Backdrop } from '~/components/backdrop';
+import { Backdrop } from "~/components/backdrop";
+import { AppIcon } from "~/components/app-icon";
 
 export default function RegisterPage() {
   return (
@@ -11,13 +11,7 @@ export default function RegisterPage() {
       {/* Container */}
       <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit ">
         {/* Logo */}
-        <Image
-          className="mx-auto"
-          src="/assets/images/stikom_logo.png"
-          width={250}
-          height={300}
-          alt="Logo Stikom"
-        />
+        <AppIcon />
 
         {/* Page Header */}
         <header>

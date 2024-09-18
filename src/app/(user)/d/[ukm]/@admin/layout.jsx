@@ -32,7 +32,7 @@ export default function Layout({ children }) {
               <Card x-chunk="dashboard-02-chunk-0">
                 <CardHeader className="p-2 pt-0 md:p-4">
                   <CardTitle>
-                    <Image src={Data.ukm.logo} alt={Data.ukm.abbreviation} width={100} height={100} className="mx-auto pb-4" />
+                    <Image src={Data.ukm.logo} alt={Data.ukm.abbreviation} width={100} height={100} loading="eager" className="w-auto h-auto mx-auto pb-4" />
                     UKM {Data.ukm.abbreviation}
                   </CardTitle>
                   <CardDescription>

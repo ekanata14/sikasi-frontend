@@ -19,6 +19,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
 import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { AppIcon } from "./app-icon";
 
 const SidebarMobile = React.forwardRef(({ className, ...props }, ref) => {
   const currentData = Data.ukm.abbreviation;
@@ -44,8 +45,7 @@ const SidebarMobile = React.forwardRef(({ className, ...props }, ref) => {
               href="#"
               className="flex items-center gap-2 text-lg font-semibold"
             >
-              {/* <Package2 className="h-6 w-6" /> */}
-              <Image src={"/assets/images/stikom_logo.png"} alt={"Logo Stikom"} width={100} height={100} className="mx-auto pb-4" />
+              <AppIcon className="mx-auto pb-4" />
               <span className="sr-only">SIKASI</span>
             </Link>
             <Link
