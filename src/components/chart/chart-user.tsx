@@ -118,9 +118,9 @@ const ChartUser = () => {
         <div className="flex items-center gap-2 font-medium leading-none">
           Terdapat 70 anggota baru! <TrendingUp className="h-4 w-4" />
         </div>
-        <div className="leading-none text-muted-foreground">
+        <p className="text-sm text-muted-foreground">
           Menampilkan total anggota sejak aplikasi ini pertama kali efektif digunakan
-        </div>
+        </p>
       </CardFooter>
     </Card>
   );

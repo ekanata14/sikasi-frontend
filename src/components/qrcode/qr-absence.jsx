@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
  
-import { cn } from "~/lib/utils"
-import { useMediaQuery } from "@uidotdev/usehooks"
-import { Button } from "~/components/ui/button"
+import { cn } from "~/lib/utils";
+import { useMediaQuery } from "@uidotdev/usehooks";
+import { Button } from "~/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "~/components/ui/dialog"
+} from "~/components/ui/dialog";
 import {
   Drawer,
   DrawerClose,
@@ -22,13 +22,13 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "~/components/ui/drawer"
+} from "~/components/ui/drawer";
 import ReactDOM from "react-dom";
 import QRCode from "react-qr-code";
 
 const QRAbsence = () => {
-  const [open, setOpen] = React.useState(false)
-  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const [open, setOpen] = React.useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
  
   if (isDesktop) {
     return (
@@ -46,7 +46,7 @@ const QRAbsence = () => {
           <QrAbsence />
         </DialogContent>
       </Dialog>
-    )
+    );
   }
  
   return (
@@ -79,10 +79,10 @@ function QrAbsence({ className }) {
         size={256}
         style={{ height: "auto", maxWidth: "100%", width: "80%", margin: "0 auto" }}
         value={"hehe siapa iseng ni scan"}
-        viewBox={`0 0 256 256`}
+        viewBox={"0 0 256 256"}
       />
     </div>
-  )
+  );
 }
 
 export default QRAbsence;

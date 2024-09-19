@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "~/lib/utils"
-import { useMediaQuery } from "@uidotdev/usehooks"
-import { Button } from "~/components/ui/button"
+import { cn } from "~/lib/utils";
+import { useMediaQuery } from "@uidotdev/usehooks";
+import { Button } from "~/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "~/components/ui/dialog"
+} from "~/components/ui/dialog";
 import {
   Drawer,
   DrawerClose,
@@ -22,19 +22,20 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "~/components/ui/drawer"
-import { useRef, useState, useEffect } from "react"
-import QrScanner from "qr-scanner"
+} from "~/components/ui/drawer";
+import { useRef, useState, useEffect } from "react";
+import QrScanner from "qr-scanner";
+import { UserRoundCheck } from "lucide-react";
 
-const QRScanner = () => {
-  const isDesktop = useMediaQuery("(min-width: 768px)")
-  const [open, setOpen] = React.useState(false)
+const QRScanner = React.forwardRef(({ className, ...props }, ref) => {
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [open, setOpen] = React.useState(false);
 
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className={"w-full"} variant="stikom">Absensi Kehadiran</Button>
+          <Button className="max-w-sm space-x-2" variant="stikom"><UserRoundCheck/><span className="hidden lg:block">Absensi Kehadiran</span></Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -47,13 +48,13 @@ const QRScanner = () => {
           <Scanner />
         </DialogContent>
       </Dialog>
-    )
+    );
   }
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button className={"w-full"} variant="stikom">Absensi Kehadiran</Button>
+        <Button className="max-w-sm space-x-2" variant="stikom"><UserRoundCheck/><span className="hidden lg:block ml-2">Absensi Kehadiran</span></Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
@@ -72,7 +73,8 @@ const QRScanner = () => {
       </DrawerContent>
     </Drawer>
   );
-};
+});
+QRScanner.displayName = "QRScanner";
 
 const Scanner = () => {
   const scanner = useRef();
@@ -80,7 +82,7 @@ const Scanner = () => {
   const qrBoxEl = useRef(null);
   const [qrOn, setQrOn] = useState(true);
 
-  const [hold, onHold] = useState(false)
+  const [hold, onHold] = useState(false);
 
   const [scannedResult, setScannedResult] = useState("");
 
@@ -97,15 +99,15 @@ const Scanner = () => {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     return canvas.toDataURL();
-  }
+  };
 
   const resumeScanner = () => {
     scanner.current.start();
     onHold(false);
-  }
+  };
 
   const onScanSuccess = (result) => {
-    console.log(result);
+    // console.log(result);
 
     scanner.current.stop();
 
@@ -117,7 +119,7 @@ const Scanner = () => {
   };
 
   const onScanFail = (err) => {
-    console.log(err);
+    // console.log(err);
 
   };
 
@@ -155,7 +157,7 @@ const Scanner = () => {
 
   return (
     <div className="qr-reader h-min">
-      <video ref={videoEl} className={cn("h-auto", hold ? 'hidden' : '')}></video>
+      <video ref={videoEl} className={cn("h-auto", hold ? "hidden" : "")}></video>
       <div ref={qrBoxEl} className="qr-box">
         {/* Overlay disabled for some reason v: */}
         {/* {!videoEl?.current && (

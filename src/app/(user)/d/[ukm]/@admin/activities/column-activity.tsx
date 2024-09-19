@@ -4,7 +4,7 @@ import { z } from "zod";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "~/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
 import Link from "next/link";
 
 // This type is used to define the shape of our data.
@@ -69,6 +69,9 @@ export const columns: ColumnDef<Activity>[] = [
             <DropdownMenuLabel>Aksi</DropdownMenuLabel>
             {/* @ts-ignore */}
             <DropdownMenuItem><Link href={"activities/1/edit"}>Ubah Aktivitas</Link></DropdownMenuItem>
+            <DropdownMenuSeparator/>
+            {/* @ts-ignore */}
+            <DropdownMenuItem><Link href={"activities/1/edit"}>Buka Menu Absensi</Link></DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

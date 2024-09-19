@@ -13,13 +13,14 @@ import {
 } from "~/components/ui/dropdown-menu";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "~/components/ui/sheet";
 import { Data } from "~/data/data";
 import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
 import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { AppIcon } from "./app-icon";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 const SidebarMobile = React.forwardRef(({ className, ...props }, ref) => {
   const currentData = Data.ukm.abbreviation;
@@ -39,7 +40,17 @@ const SidebarMobile = React.forwardRef(({ className, ...props }, ref) => {
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
+        <SheetTitle>
+          <VisuallyHidden.Root>
+            Sidebar
+          </VisuallyHidden.Root>
+        </SheetTitle>
         <SheetContent side="left" className="flex flex-col">
+          <SheetDescription>
+            <VisuallyHidden.Root>
+              Sidebar Menu
+            </VisuallyHidden.Root>
+          </SheetDescription>
           <nav className="grid gap-2 text-lg font-medium">
             <Link
               href="#"
@@ -97,7 +108,7 @@ const SidebarMobile = React.forwardRef(({ className, ...props }, ref) => {
 
               <CardHeader>
                 <CardTitle className="text-center">
-                  <Image src={Data.ukm.logo} alt={Data.ukm.abbreviation} width={50} height={50} className="mx-auto pb-4" />
+                  <Image src={Data.ukm.logo} alt={Data.ukm.abbreviation} width={50} height={50} className="w-auto mx-auto pb-4" />
                   UKM {Data.ukm.abbreviation}
                 </CardTitle>
                 <CardDescription>

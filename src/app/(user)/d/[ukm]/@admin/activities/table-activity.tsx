@@ -25,6 +25,7 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { CirclePlus, Printer } from "lucide-react";
 import Link from "next/link";
+import QRScanner from "~/components/qrcode/qr-scanner";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -81,6 +82,8 @@ export function DataTable<TData, TValue>({
           </Link>
           {/* @ts-ignore */}
           <Button className="max-w-sm space-x-2"><Printer /><span className="hidden lg:block">Cetak</span></Button>
+          {/* @ts-ignore */}
+          <QRScanner/>
         </div>
       </div>
       <div className="rounded-md border w-full overflow-scroll lg:w-auto lg:overflow-visible">
