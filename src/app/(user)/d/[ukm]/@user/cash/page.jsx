@@ -53,10 +53,10 @@ export default async function CashPage() {
   return (
     <main className={cn("w-full px-4 flex flex-col gap-4")}>
       {/* Section 1: Bagian Activities dan Header */}
-      <section>
-        <div className={cn("pt-8 pb-4")}>
-          <h1 className={cn("font-bold text-lg")}>KAS UKM {Temp.ukm.abbreviation}</h1>
-          <p className="text-sm">Halo {Temp.user.name}, berikut adalah rekapan pendaftaran mengenai kas anda. Silahkan hubungi bendahara jika terjadi kesalahan data.</p>
+      <section className="mt-4">
+        <div className={cn("pb-4")}>
+          <h1 className={cn("font-bold text-2xl mb-2")}>KAS UKM {Temp.ukm.abbreviation}</h1>
+          <p className="text-base font-medium">Halo {Temp.user.name}, berikut adalah rekapan pendaftaran mengenai kas anda. Silahkan hubungi bendahara jika terjadi kesalahan data.</p>
         </div>
       </section>
 
@@ -84,7 +84,6 @@ export default async function CashPage() {
               <TableCell>Nama</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Jumlah</TableCell>
-              <TableCell>Aksi</TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -95,7 +94,6 @@ export default async function CashPage() {
                 <TableCell>{cash.name}</TableCell>
                 <TableCell>{cash.status}</TableCell>
                 <TableCell>{cash.amount}</TableCell>
-                <TableCell>Ubah|Hapus</TableCell>
               </TableRow>
             ))}
           </TableBody>

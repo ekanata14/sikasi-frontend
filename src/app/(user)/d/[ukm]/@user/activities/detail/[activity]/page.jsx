@@ -1,4 +1,4 @@
-import { Check, X } from "lucide-react";
+import { CheckCircle, CircleX } from "lucide-react";
 import React from "react";
 // import ChartAbsence from "~/components/chart/chart-absence";
 import QRAbsence from "~/components/qrcode/qr-absence";
@@ -11,10 +11,10 @@ const DetailPage = () => {
   return (
     <main className={cn("w-full flex flex-col gap-4 px-4 pb-10")}>
 
-      <header>
-        <div className={cn("pt-8 pb-4")}>
-          <h1 className={cn("font-bold text-lg")}>Detail Aktivitas UKM {Data.ukm.abbreviation}</h1>
-          <p className="text-sm">Halo {Data.user.name},  silahkan lakukan absensi tepat pada waktu yang telah ditentukan.</p>
+      <header className="mt-4">
+        <div className={cn("pb-4")}>
+          <h1 className={cn("font-bold text-2xl mb-2")}>Detail Aktivitas</h1>
+          <p className="text-base font-medium">Halo {Data.user.name},  silahkan lakukan absensi tepat pada waktu yang telah ditentukan.</p>
         </div>
       </header>
 
@@ -36,12 +36,12 @@ const DetailPage = () => {
             <p className={cn("font-light text-sm")}>Status Absensi Anda</p>
             {statusAbsence ? (
               <div className={cn("flex gap-2 text-green-500")}>
-                <Check />
+                <CheckCircle />
                 <h2 className={cn("font-bold")}>Sudah Absensi</h2>
               </div>
             ) : (
               <div className={cn("flex gap-2 text-red-500")}>
-                <X />
+                <CircleX />
                 <h2 className={cn("font-bold")}>Belum Absensi</h2>
               </div>
             )
@@ -50,10 +50,6 @@ const DetailPage = () => {
           <div className={cn("pt-4 w-full")}>
             <QRAbsence />
           </div>
-        </div>
-        <div>
-          <p className={cn("font-light text-sm lg:text-center")}>Data Absensi Kehadiran</p>
-          {/* <ChartAbsence /> */}
         </div>
       </section>
     </main>

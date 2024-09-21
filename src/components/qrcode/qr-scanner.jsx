@@ -25,7 +25,7 @@ import {
 } from "~/components/ui/drawer";
 import { useRef, useState, useEffect } from "react";
 import QrScanner from "qr-scanner";
-import { UserRoundCheck } from "lucide-react";
+import { CameraIcon, UserRoundCheck } from "lucide-react";
 
 const QRScanner = React.forwardRef(({ className, ...props }, ref) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -35,7 +35,7 @@ const QRScanner = React.forwardRef(({ className, ...props }, ref) => {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="max-w-sm space-x-2" variant="stikom"><UserRoundCheck/><span className="hidden lg:block">Absensi Kehadiran</span></Button>
+          <Button className="max-w-sm space-x-2" variant="stikom"><CameraIcon/><span className="hidden lg:block">Absensi Kehadiran</span></Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -54,7 +54,7 @@ const QRScanner = React.forwardRef(({ className, ...props }, ref) => {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button className="max-w-sm space-x-2" variant="stikom"><UserRoundCheck/><span className="hidden lg:block ml-2">Absensi Kehadiran</span></Button>
+        <Button className="max-w-sm space-x-2" variant="stikom"><CameraIcon/><span className="hidden lg:block ml-2">Absensi Kehadiran</span></Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">

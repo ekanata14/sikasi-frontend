@@ -7,8 +7,7 @@ import { Data } from "~/data/data";
 export default function Layout({ children }) {
   return(
     <div className="lg:grid">
-      <div className={cn("w-full", "lg:max-w-6xl lg:order-2 lg:mx-auto")}>
-        <span className={cn("hidden", "w-full border-b-2 lg:block p-1")}></span>
+      <div className={cn("w-full py-4 pb-32", "lg:px-8 lg:pb-0 lg:order-2 lg:mx-auto")}>
         { children }
       </div>
       <Navbar className={"lg:order-1"} data={Data} />

@@ -165,6 +165,6 @@ export const Data = {
     user: {
     id_user: 1,
     name: "Mr.kesal",
-    role: "admin"
+    role: "user"
   }
 };

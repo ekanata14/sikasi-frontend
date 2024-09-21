@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
  
 import { cn } from "~/lib/utils";
 import { useMediaQuery } from "@uidotdev/usehooks";
@@ -23,18 +22,18 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "~/components/ui/drawer";
-import ReactDOM from "react-dom";
 import QRCode from "react-qr-code";
+import { useState } from "react";
 
 const QRAbsence = () => {
-  const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [open, setOpen] = useState(false);
  
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className={"w-full"} variant="stikom">Absensi Kehadiran</Button>
+          <Button className={"w-full"} variant="outline">Absensi Kehadiran</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -52,7 +51,7 @@ const QRAbsence = () => {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button className={"w-full"} variant="stikom">Absensi Kehadiran</Button>
+        <Button className={"w-full"} variant="outline">Absensi Kehadiran</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
