@@ -55,7 +55,7 @@ export default function RegisterPage() {
     <main className={cn("grid pt-10 gap-4", "lg:block")}>
       {/* Container */}
       <div className={cn("max-w-80 mx-auto grid h-full gap-4 relative", "lg:max-w-7xl lg:flex lg:flex-col lg:bg-white lg:px-8 lg:py-10 lg:rounded-md lg:shadow-md")}>
-        <Link href={"#"} className="absolute lg:top-8 lg:right-8 text-red-500 flex font-semibold">
+        <Link href={"/logout"} className="absolute lg:top-8 lg:right-8 text-red-500 flex font-semibold">
           <LogOut />Logout
         </Link>
 

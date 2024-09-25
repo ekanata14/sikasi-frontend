@@ -23,7 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { toast } from "~/components/ui/use-toast";
+import { toast } from "~/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2).max(20),

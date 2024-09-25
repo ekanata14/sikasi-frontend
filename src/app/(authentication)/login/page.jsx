@@ -1,8 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { cn } from "~/lib/utils";
-import LoginForm from "~/components/form/login-form";
 import { AppIcon } from "~/components/app-icon";
+import { LoginForm } from "./form";
 
 export default function LoginPage() {
   return (
@@ -22,9 +22,10 @@ export default function LoginPage() {
             Ormawa! Silahkan lakukan authentikasi.
           </p>
         </header>
+        
 
         {/* Form */}
-        <LoginForm />
+        <LoginForm/>
 
         {/* Create Account btn */}
         <div className="gap-2 flex font-medium">

@@ -15,7 +15,7 @@ import {
 } from "~/components/ui/form";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { toast } from "~/components/ui/use-toast";
+import { toast } from "~/hooks/use-toast";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
 
