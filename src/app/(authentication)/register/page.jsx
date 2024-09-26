@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { cn } from "~/lib/utils";
-import RegisterForm from "~/components/form/register-form";
+import RegisterForm from "./form";
 import { AppIcon } from "~/components/app-icon";
 
 export default function RegisterPage() {

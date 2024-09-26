@@ -24,6 +24,10 @@ export default async function middleware(req: NextRequest) {
   ) {
     return NextResponse.redirect(new URL("/welcome", req.nextUrl));
   }
+
+  if (req.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/welcome", req.nextUrl));
+  }
  
   return NextResponse.next();
 }

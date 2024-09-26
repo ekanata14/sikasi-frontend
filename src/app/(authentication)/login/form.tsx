@@ -19,7 +19,6 @@ import { cn } from "~/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "~/hooks/auth";
-import { useToggle } from "@uidotdev/usehooks";
 import { toast } from "~/hooks/use-toast";
 
 // Define form schema

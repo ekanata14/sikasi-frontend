@@ -34,6 +34,34 @@ export const useAuth = () => {
       }));
   };
 
+  const register = async ({ setError, ...props }) => {
+    setError([]);
+    axios
+      .post("/register", props)
+      .then(async (res) => {
+        if (res.data.code === 200){
+          await createSession(res.data);
+          router.push("/welcome");
+          toast({
+            variant: "success",
+            title: "Berhasil melakukan registrasi",
+            description: "Melakukan redirect ke halaman selanjutnya",
+          }); 
+        } else {
+          setError(res.data.message);
+          toast({
+            variant: "destructive",
+            title: "Gagal melakukan registrasi",
+            description: res.data.message,
+          });         
+        }})
+      .catch((error) => toast({
+        variant: "destructive",
+        title: error.status + " Terjadi kegagalan server",
+        description: "Silahkan coba lagi setelah beberapa menit atau hubungi admin",
+      }));
+  };
+
   const logout = async () => {
     deleteSession();
     router.push("/login");
@@ -41,6 +69,7 @@ export const useAuth = () => {
 
   return {
     login,
+    register,
     logout,
   };
 };
