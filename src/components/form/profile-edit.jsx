@@ -24,12 +24,14 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { toast } from "~/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(2).max(20),
 });
 
 const ProfileEditForm = React.forwardRef(({ className, ...props }, ref) => {
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,7 +53,7 @@ const ProfileEditForm = React.forwardRef(({ className, ...props }, ref) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
+        {/* <FormField
           control={form.control}
           name="nim"
           render={({ field }) => (
@@ -63,7 +65,7 @@ const ProfileEditForm = React.forwardRef(({ className, ...props }, ref) => {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="name"
@@ -140,7 +142,10 @@ const ProfileEditForm = React.forwardRef(({ className, ...props }, ref) => {
           )}
         />
 
-        <Button variant="stikom" type="submit">Simpan</Button>
+        <div className="space-y-2">
+          <Button variant="stikom" type="submit">Simpan</Button>
+          <Button className="w-full" variant="destructive" onClick={() => router.push("/")}>Batal</Button>
+        </div>
       </form>
     </Form>
   );

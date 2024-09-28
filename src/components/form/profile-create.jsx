@@ -47,8 +47,8 @@ const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nim: "",
-      name: "",
+      // nim: "",
+      // name: "",
       phone: "",
       study: "",
       picture: "",
@@ -69,7 +69,7 @@ const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
+        {/* <FormField
           control={form.control}
           name="nim"
           render={({ field }) => (
@@ -81,8 +81,8 @@ const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
@@ -97,7 +97,7 @@ const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="phone"
@@ -141,7 +141,7 @@ const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
           name="picture"
           render={({ field: { value, onChange, ...fieldProps } }) => (
             <FormItem>
-              <FormLabel>Foto Profile</FormLabel>
+              <FormLabel>Foto Profile (optional)</FormLabel>
               <FormControl>
                 <Input
                   {...fieldProps}

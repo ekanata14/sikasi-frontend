@@ -2,7 +2,6 @@ import React from "react";
 import ProfileEditForm from "~/components/form/profile-edit";
 import Link from "next/link";
 import { cn } from "~/lib/utils";
-import { Backdrop } from "~/components/backdrop";
 import { AppIcon } from "~/components/app-icon";
 
 export default function RegisterPage() {
@@ -11,7 +10,7 @@ export default function RegisterPage() {
       {/* Container */}
       <div className="max-w-80 m-auto py-10 lg:py-0 grid gap-4 relative z-10 lg:order-2 min-h-fit ">
         {/* Logo */}
-        <AppIcon />
+        <AppIcon className={"w-3/4"}/>
 
         {/* Page Header */}
         <header>
@@ -28,9 +27,6 @@ export default function RegisterPage() {
         <ProfileEditForm />
 
       </div>
-
-      {/* Backdrop Container */}
-      <Backdrop/>
     </section>
   );
 }

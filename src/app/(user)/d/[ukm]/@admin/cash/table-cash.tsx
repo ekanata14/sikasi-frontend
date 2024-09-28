@@ -65,7 +65,7 @@ export function DataTable<TData, TValue>({
       <div className="grid gap-2 grid-cols-4 py-4 justify-between lg:gap-0 lg:flex lg:items-center">
         <Input
           // @ts-ignore
-          placeholder="Filter NIM"
+          placeholder="Filter NIM atau Tanggal (YYYY/MM/DD)"
           value={(table.getColumn("nim")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("nim")?.setFilterValue(event.target.value)

@@ -52,7 +52,7 @@ export default function RegisterPage() {
   );
 
   return (
-    <main className={cn("grid pt-10 gap-4", "lg:block")}>
+    <main className={cn("grid py-10 gap-4", "lg:block")}>
       {/* Container */}
       <div className={cn("max-w-80 mx-auto grid h-full gap-4 relative", "lg:max-w-7xl lg:flex lg:flex-col lg:bg-white lg:px-8 lg:py-10 lg:rounded-md lg:shadow-md")}>
         <Link href={"/logout"} className="absolute lg:top-8 lg:right-8 text-red-500 flex font-semibold">
@@ -91,7 +91,7 @@ export default function RegisterPage() {
       </div>
 
       {/* Backdrop Container */}
-      <Backdrop container={cn("", "lg:absolute lg:min-h-[110vh] lg:opacity-60 lg:top-0 rotate-180 lg:-z-10")}/>
+      <Backdrop container={cn("hidden", "lg:block lg:absolute lg:min-h-[110vh] lg:opacity-60 lg:top-0 rotate-180 lg:-z-10")}/>
 
     </main>
   );

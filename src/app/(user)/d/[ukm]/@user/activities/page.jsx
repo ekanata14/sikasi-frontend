@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Card } from "~/components/ui/card";
 import { Data } from "~/data/data";
@@ -7,11 +8,12 @@ export default function ActivitiesPage() {
 
   const ActivitiesCard = Data.ukm.activities.map(activities =>
     <Link key={activities.id} href={"activities/detail/"+activities.id}>
-      <Card className={cn("px-5 py-3 w-full border-slate-300 text-slate-800 text-sm bg-[url('" + Data.ukm.logo + "')] bg-right-top bg-no-repeat bg-[length:100px]")}>
+      <Card className={cn("px-5 py-3 w-full border-slate-300 bg-blue-600 text-white text-sm bg-right-top bg-no-repeat bg-[length:100px] relative overflow-hidden")}>
         <h3 className={"font-bold uppercase"}>{activities.name}</h3>
         <p>{activities.date}</p>
         <p>{activities.timeStart} - {activities.timeEnd}</p>
         <p>{activities.place}</p>
+        <Image src={Data.ukm.logo} alt="logo" className="absolute -right-2 top-0 h-auto lg:right-2" width={100} height={100} />
       </Card>
     </Link>
   );
