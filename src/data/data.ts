@@ -37,7 +37,7 @@ export const Data = {
         name: "Eka Nata",
         date: "28/08/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         id: "2",
@@ -45,7 +45,7 @@ export const Data = {
         name: "Agus",
         date: "28/08/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         id: "3",
@@ -53,7 +53,7 @@ export const Data = {
         name: "Angel",
         date: "28/08/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         id: "4",
@@ -61,7 +61,7 @@ export const Data = {
         name: "Sufyan",
         date: "28/08/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         id: "5",
@@ -69,7 +69,7 @@ export const Data = {
         name: "Reyna",
         date: "28/08/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         id: "6",
@@ -77,7 +77,7 @@ export const Data = {
         name: "Gopal",
         date: "28/08/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
     ],
     mrKesal: [
@@ -86,42 +86,42 @@ export const Data = {
         name: "Mr.Kesal",
         date: "01/01/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         nim: "220030006",
         name: "Mr.Kesal",
         date: "01/02/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         nim: "220030006",
         name: "Mr.Kesal",
         date: "01/03/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         nim: "220030006",
         name: "Mr.Kesal",
         date: "01/04/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         nim: "220030006",
         name: "Mr.Kesal",
         date: "01/05/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
       {
         nim: "220030006",
         name: "Mr.Kesal",
         date: "01/06/2024",
         amount: 10000,
-        status: "unpaid"
+        status: "unpaid",
       },
     ],
     users: [
@@ -130,41 +130,41 @@ export const Data = {
         email: "imade@example.com",
         nim: "220040001",
         status: "active",
-        created_at: "2022-01-01"
+        created_at: "2022-01-01",
       },
       {
         name: "John Doe",
         email: "johndoe@example.com",
         nim: "220030002",
         status: "active",
-        created_at: "2022-02-15"
+        created_at: "2022-02-15",
       },
       {
         name: "Jane Smith",
         email: "janesmith@example.com",
         nim: "220020003",
         status: "active",
-        created_at: "2022-03-10"
+        created_at: "2022-03-10",
       },
       {
         name: "Michael Johnson",
         email: "michaeljohnson@example.com",
         nim: "220010004",
         status: "active",
-        created_at: "2022-04-20"
+        created_at: "2022-04-20",
       },
       {
         name: "Sarah Williams",
         email: "sarahwilliams@example.com",
         nim: "220020005",
         status: "active",
-        created_at: "2022-05-05"
-      }
+        created_at: "2022-05-05",
+      },
     ],
   },
-    user: {
+  user: {
     id_user: 1,
     name: "Mr.kesal",
-    role: "user"
-  }
+    role: "user",
+  },
 };
