@@ -19,7 +19,7 @@ import Image from "next/image";
 
 const Sidebar = React.forwardRef(({ className, ...props }, ref) => {
   const currentData = Data.ukm.abbreviation;
-  const currentPath = "/d/" + currentData.toLocaleLowerCase();
+  const currentPath = "/" + currentData.toLocaleLowerCase();
   const pathname = usePathname().split("/").pop();
 
   return (

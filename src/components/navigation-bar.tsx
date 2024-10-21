@@ -113,19 +113,19 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                 </Command>
               </PopoverContent>
             </Popover>
-            <Link href="/d/ksl" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
+            <Link href="/ksl" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
               <LayoutDashboard className="lg:hidden" />
               <NavTitle>
                 Beranda
               </NavTitle>
             </Link>
-            <Link href="/d/ksl/activities" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
+            <Link href="/ksl/activities" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
               <ListTodo className="lg:hidden" />
               <NavTitle>
                 Aktivitas
               </NavTitle>
             </Link>
-            <Link href="/d/ksl/cash" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
+            <Link href="/ksl/cash" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
               <Coins className="lg:hidden" />
               <NavTitle>
                 Kas UKM
