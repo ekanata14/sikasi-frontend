@@ -22,7 +22,7 @@ import { useAuth } from "~/hooks/auth";
 
 const FormSchema = z.object({
   name: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
-  nim: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
+  nim: z.string().min(9, { message: "Pastikan NIM benar" }),
   email: z.string().email(),
   password: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
   confirm_password: z.string().min(1, { message: "Kolom tidak boleh kosong" }),

@@ -24,7 +24,7 @@ import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 const SidebarMobile = React.forwardRef(({ className, ...props }, ref) => {
   const currentData = Data.ukm.abbreviation;
-  const currentPath = "/" + currentData.toLocaleLowerCase();
+  const currentPath = "/admin/" + currentData.toLocaleLowerCase();
   const pathname = usePathname().split("/").pop();
 
   return (
