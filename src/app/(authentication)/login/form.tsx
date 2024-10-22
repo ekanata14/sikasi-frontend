@@ -22,7 +22,7 @@ import axios from 'axios';
 
 // Define form schema
 const FormSchema = z.object({
-  username: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
+  nim: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
   password: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
 });
 
@@ -30,7 +30,7 @@ export function LoginForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: "",
+      nim: "",
       password: "",
     },
   });
@@ -42,7 +42,7 @@ export function LoginForm() {
     
     // Post login data using Axios
     axios.post('http://localhost:80/api/login', {
-        email: data.email,
+        nim: data.nim,
         password: data.password,
       })
       .then((response) => {
@@ -61,7 +61,7 @@ export function LoginForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="username"
+          name="nim"
           render={({ field }) => (
             // @ts-ignore
             <FormItem>
@@ -69,7 +69,7 @@ export function LoginForm() {
               <FormLabel>NIM</FormLabel>
               {/* @ts-ignore */}
               <FormControl>
-                <Input type="text" autoComplete="username" placeholder="NIM pengguna" {...field} />
+                <Input type="text" autoComplete="nim" placeholder="NIM pengguna" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
