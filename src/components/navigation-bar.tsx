@@ -28,6 +28,7 @@ import { Check, ChevronsUpDown, Coins, LayoutDashboard, ListTodo, User } from "l
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 import { Button } from "./ui/button";
+import { getUser } from "~/lib/dal";
 
 const ukm = [
   {
@@ -56,6 +57,13 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
       </div>
     );
   };
+
+  React.useEffect(() => {
+    async function fetchDataUser() {
+      getUser();
+    }
+    fetchDataUser();
+  }, []);
 
   const { data } = props;
 
