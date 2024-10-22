@@ -18,6 +18,7 @@ import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import axios from 'axios'; 
 
 // Define form schema
 const FormSchema = z.object({
@@ -38,25 +39,21 @@ export function LoginForm() {
 
   const onSubmit = (data) => {
     console.log(data);
-    // Post login data to the backend
-    fetch("http://localhost:80/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    
+    // Post login data using Axios
+    axios.post('http://localhost:80/api/login', {
         email: data.email,
         password: data.password,
-      }),
-    })
-      .then(async (response) => {
-        const data = await response.json();
-        console.log(data);
-        if (data.status) {
-          router.push("/welcome");
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status) {
+          router.push("/welcome");  // Redirect on successful login
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error('Login error:', error.response?.data || error.message);
+      });
   };
 
   return (
@@ -81,7 +78,7 @@ export function LoginForm() {
         <FormField
           control={form.control}
           name="password"
-          render={({ field }) => (
+          render={({ field, error }) => (
             // @ts-ignore
             <FormItem>
               <FormLabel className={cn("flex justify-between")}>
@@ -154,7 +151,7 @@ export function LoginForm() {
       </form>
     </Form>
   );
-});
+};
 
 LoginForm.displayName = "LoginForm";
 

@@ -48,6 +48,7 @@ const RegisterForm = React.forwardRef(({ ...props }, ref) => {
   const [error, setError] = React.useState(null);
 
   const onSubmit = async (data: z.infer<typeof FormSchema>, event) => {
+    console.log(data);
     event.preventDefault();
 
     toast({
@@ -66,6 +67,30 @@ const RegisterForm = React.forwardRef(({ ...props }, ref) => {
       password,
       setError
     });
+
+    fetch("http://localhost:80/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        nim: data.nim,
+      }),
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        console.log(data);
+        if (data.status) {
+          toast({
+            title: "Terkirim"
+          });
+        }
+      })
+      .catch((error) => console.error(error));
+  
   };
 
   return (
