@@ -1,8 +1,8 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import Image from "next/image";
 import { cn } from "~/lib/utils";
 
-const AppIcon = React.forwardRef(({ className, ...props }, ref) => {
+const AppIcon = React.forwardRef<HTMLImageElement, HTMLAttributes<HTMLImageElement>>(({ className, ...props }, ref) => {
   return (
     <>
       <Image

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,7 +17,7 @@ import {
 } from "~/components/ui/card";
 import Image from "next/image";
 
-const Sidebar = React.forwardRef(({ className, ...props }, ref) => {
+const Sidebar = React.forwardRef<HTMLDivElement,HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
   const currentData = Data.ukm.abbreviation;
   const currentPath = "/admin/" + currentData.toLocaleLowerCase();
   const pathname = usePathname().split("/").pop();

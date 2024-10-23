@@ -43,7 +43,7 @@ const formSchema = z.object({
   ),
 });
 
-const ProfileCreateForm = React.forwardRef(({ className, ...props }, ref) => {
+const ProfileCreateForm = React.forwardRef<HTMLFormControlsCollection, React.HTMLAttributes<HTMLFormControlsCollection>>(({ className, ...props }, ref) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {

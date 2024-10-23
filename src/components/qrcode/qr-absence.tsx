@@ -71,7 +71,7 @@ const QRAbsence = () => {
   );
 };
 
-function QrAbsence({ className }) {
+function QrAbsence({ className = "" }) {
   return (
     <div className={cn("grid items-start gap-4 py-4", className)}>
       <QRCode

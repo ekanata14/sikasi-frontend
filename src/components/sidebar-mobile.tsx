@@ -22,7 +22,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { AppIcon } from "./app-icon";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
-const SidebarMobile = React.forwardRef(({ className, ...props }, ref) => {
+export interface SidebarMobileProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
+}
+
+const SidebarMobile = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
   const currentData = Data.ukm.abbreviation;
   const currentPath = "/admin/" + currentData.toLocaleLowerCase();
   const pathname = usePathname().split("/").pop();

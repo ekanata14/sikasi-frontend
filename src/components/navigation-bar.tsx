@@ -27,7 +27,17 @@ const ukm = [
   },
 ];
 
-const Navbar = React.forwardRef(({ className, ...props }, ref) => {
+export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
+  data: {
+    user: {
+      name: string;
+      role: string;
+    };
+  };
+}
+
+const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(({ className, ...props }, ref) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("ksl");
 
@@ -53,48 +63,49 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
         {/* Mobile Profile */}
         <div className={cn("bg-slate-900 rounded-sm h-full w-11/12 grid grid-cols-4 px-4 py-2 text-white fill-white", "lg:flex lg:bg-transparent lg:text-black lg:w-full lg:fill-slate-900 lg:px-0 lg:gap-10 lg:justify-between")}>
           <div className="flex col-span-3 lg:gap-8">
-            <Popover
-              open={open}
-              onOpenChange={setOpen}
-              className="hidden lg:grid"
-            >
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-label="Pilih Organisasi"
-                  aria-expanded={open}
-                  className="min-w-[200px] justify-between font-medium h-full hidden lg:flex py-4"
-                >
-                  {value ? ukm.find((framework) => framework.value === value)?.label : "Pilih Organisasi"}
-                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[200px] p-0">
-                <Command>
-                  <CommandInput placeholder="Cari Organisasi..." />
-                  <CommandList>
-                    <CommandEmpty>Tidak ada UKM terdaftar.</CommandEmpty>
-                    <CommandGroup>
-                      {ukm.map((framework) => (
-                        <CommandItem
-                          key={framework.value}
-                          value={framework.value}
-                          onSelect={(currentValue) => {
-                            setValue(currentValue === value ? "" : currentValue);
-                            setOpen(false);
-                          }}
-                          className="font-medium"
-                        >
-                          <Check className={cn("mr-2 h-4 w-4", value === framework.value ? "opacity-100" : "opacity-0")} />
-                          {framework.label}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
+            <div className={"hidden lg:grid"}>
+              <Popover
+                open={open}
+                onOpenChange={setOpen}
+              >
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-label="Pilih Organisasi"
+                    aria-expanded={open}
+                    className="min-w-[200px] justify-between font-medium h-full hidden lg:flex py-4"
+                  >
+                    {value ? ukm.find((framework) => framework.value === value)?.label : "Pilih Organisasi"}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[200px] p-0">
+                  <Command>
+                    <CommandInput placeholder="Cari Organisasi..." />
+                    <CommandList>
+                      <CommandEmpty>Tidak ada UKM terdaftar.</CommandEmpty>
+                      <CommandGroup>
+                        {ukm.map((framework) => (
+                          <CommandItem
+                            key={framework.value}
+                            value={framework.value}
+                            onSelect={(currentValue) => {
+                              setValue(currentValue === value ? "" : currentValue);
+                              setOpen(false);
+                            }}
+                            className="font-medium"
+                          >
+                            <Check className={cn("mr-2 h-4 w-4", value === framework.value ? "opacity-100" : "opacity-0")} />
+                            {framework.label}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+            </div>
             <Link
               href="/ksl"
               className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}
