@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
+import { login, googleLogin } from "~/services/authApi";
+import { LoginPayload } from "~/types/authTypes";
+import { useState } from "react";
 
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -17,8 +18,11 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-import axios from 'axios'; 
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { useAuth } from "~/hooks/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 // Define form schema
 const FormSchema = z.object({
@@ -27,7 +31,9 @@ const FormSchema = z.object({
 });
 
 export function LoginForm() {
-  const form = useForm<z.infer<typeof FormSchema>>({
+  const router = useRouter();
+
+  const form = useForm<LoginPayload>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       nim: "",
@@ -35,25 +41,18 @@ export function LoginForm() {
     },
   });
 
-  const router = useRouter();
-
-  const onSubmit = (data) => {
-    console.log(data);
-    
-    // Post login data using Axios
-    axios.post('http://localhost:80/api/login', {
-        nim: data.nim,
-        password: data.password,
-      })
-      .then((response) => {
-        console.log(response.data);
-        if (response.data.status) {
-          router.push("/welcome");  // Redirect on successful login
-        }
-      })
-      .catch((error) => {
-        console.error('Login error:', error.response?.data || error.message);
-      });
+  const onSubmit = async (data: LoginPayload) => {
+    try {
+      const response = await login(data);
+      if (response) {
+        console.log("Login success:", response);
+        router.push("/dashboard"); // Redirect ke halaman dashboard
+      } else {
+        console.log("Login failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
@@ -69,7 +68,12 @@ export function LoginForm() {
               <FormLabel>NIM</FormLabel>
               {/* @ts-ignore */}
               <FormControl>
-                <Input type="text" autoComplete="nim" placeholder="NIM pengguna" {...field} />
+                <Input
+                  type="text"
+                  autoComplete="nim"
+                  placeholder="NIM pengguna"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -87,11 +91,16 @@ export function LoginForm() {
                   href={"/forgot-password"}
                   className={cn("text-blue-600 cursor-pointer")}
                 >
-                  lupa password
+                  Lupa Password
                 </Link>
               </FormLabel>
               <FormControl>
-                <Input type="password" autoComplete="current-password" placeholder="password" {...field} />
+                <Input
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="password"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
               {/* @ts-ignore */}
@@ -151,7 +160,7 @@ export function LoginForm() {
       </form>
     </Form>
   );
-};
+}
 
 LoginForm.displayName = "LoginForm";
 
