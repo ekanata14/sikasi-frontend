@@ -1,34 +1,15 @@
 "use client";
 
 import * as React from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "~/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "~/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "~/components/ui/popover";
 import { Check, ChevronsUpDown, Coins, LayoutDashboard, ListTodo, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 import { Button } from "./ui/button";
-import { getUser } from "~/lib/dal";
 
 const ukm = [
   {
@@ -51,30 +32,32 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
   const [value, setValue] = React.useState("ksl");
 
   const NavTitle = ({ children }) => {
-    return (
-      <div className={cn("scroll-m-20 text-base p-1 font-medium tracking-tight text-inherit hidden hover:text-black text-slate-500", "lg:block")}>
-        {children}
-      </div>
-    );
+    return <div className={cn("scroll-m-20 text-base p-1 font-medium tracking-tight text-inherit hidden hover:text-black text-slate-500", "lg:block")}>{children}</div>;
   };
 
-  React.useEffect(() => {
-    async function fetchDataUser() {
-      getUser();
-    }
-    fetchDataUser();
-  }, []);
+  // React.useEffect(() => {
+  //   async function fetchDataUser() {
+  //     getUser();
+  //   }
+  //   fetchDataUser();
+  // }, []);
 
   const { data } = props;
 
   return (
-    <nav className={cn("w-full h-20 z-30 fixed bottom-0", "lg:bottom-auto lg:top-2 lg:left-0 lg:items-center lg:justify-center lg:flex lg:static lg:h-auto lg:border-b-2", className)} ref={ref}>
+    <nav
+      className={cn("w-full h-20 z-30 fixed bottom-0", "lg:bottom-auto lg:top-2 lg:left-0 lg:items-center lg:justify-center lg:flex lg:static lg:h-auto lg:border-b-2", className)}
+      ref={ref}
+    >
       <div className={cn("w-full h-3/4 justify-center flex", "lg:justify-between lg:px-4")}>
         {/* Mobile Profile */}
-        <div className={cn("bg-slate-900 rounded-sm h-full w-11/12 grid grid-cols-4 px-4 py-2 text-white fill-white",
-          "lg:flex lg:bg-transparent lg:text-black lg:w-full lg:fill-slate-900 lg:px-0 lg:gap-10 lg:justify-between")}>
+        <div className={cn("bg-slate-900 rounded-sm h-full w-11/12 grid grid-cols-4 px-4 py-2 text-white fill-white", "lg:flex lg:bg-transparent lg:text-black lg:w-full lg:fill-slate-900 lg:px-0 lg:gap-10 lg:justify-between")}>
           <div className="flex col-span-3 lg:gap-8">
-            <Popover open={open} onOpenChange={setOpen} className="hidden lg:grid">
+            <Popover
+              open={open}
+              onOpenChange={setOpen}
+              className="hidden lg:grid"
+            >
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
@@ -83,9 +66,7 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                   aria-expanded={open}
                   className="min-w-[200px] justify-between font-medium h-full hidden lg:flex py-4"
                 >
-                  {value
-                    ? ukm.find((framework) => framework.value === value)?.label
-                    : "Pilih Organisasi"}
+                  {value ? ukm.find((framework) => framework.value === value)?.label : "Pilih Organisasi"}
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
               </PopoverTrigger>
@@ -93,9 +74,7 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                 <Command>
                   <CommandInput placeholder="Cari Organisasi..." />
                   <CommandList>
-                    <CommandEmpty>
-                      Tidak ada UKM terdaftar.
-                    </CommandEmpty>
+                    <CommandEmpty>Tidak ada UKM terdaftar.</CommandEmpty>
                     <CommandGroup>
                       {ukm.map((framework) => (
                         <CommandItem
@@ -107,12 +86,7 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                           }}
                           className="font-medium"
                         >
-                          <Check
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              value === framework.value ? "opacity-100" : "opacity-0"
-                            )}
-                          />
+                          <Check className={cn("mr-2 h-4 w-4", value === framework.value ? "opacity-100" : "opacity-0")} />
                           {framework.label}
                         </CommandItem>
                       ))}
@@ -121,23 +95,26 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                 </Command>
               </PopoverContent>
             </Popover>
-            <Link href="/ksl" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
+            <Link
+              href="/ksl"
+              className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}
+            >
               <LayoutDashboard className="lg:hidden" />
-              <NavTitle>
-                Beranda
-              </NavTitle>
+              <NavTitle>Beranda</NavTitle>
             </Link>
-            <Link href="/ksl/activities" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
+            <Link
+              href="/ksl/activities"
+              className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}
+            >
               <ListTodo className="lg:hidden" />
-              <NavTitle>
-                Aktivitas
-              </NavTitle>
+              <NavTitle>Aktivitas</NavTitle>
             </Link>
-            <Link href="/ksl/cash" className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}>
+            <Link
+              href="/ksl/cash"
+              className={cn("w-full h-10 flex justify-center items-center", "lg:h-auto lg:w-fit")}
+            >
               <Coins className="lg:hidden" />
-              <NavTitle>
-                Kas UKM
-              </NavTitle>
+              <NavTitle>Kas UKM</NavTitle>
             </Link>
           </div>
           <DropdownMenu>
@@ -147,7 +124,10 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
                 <div className="flex gap-2 items-center font-medium">
                   Mr.Kesal
                   <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" alt="pp" />
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="pp"
+                    />
                     <AvatarFallback>PP</AvatarFallback>
                   </Avatar>
                 </div>
@@ -167,17 +147,26 @@ const Navbar = React.forwardRef(({ className, ...props }, ref) => {
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <Link href="" className="p-2">
+                <Link
+                  href=""
+                  className="p-2"
+                >
                   Administrator Mode
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href="/profile/edit" className="p-2">
+                <Link
+                  href="/profile/edit"
+                  className="p-2"
+                >
                   Pengaturan Pengguna
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href="" className="p-2">
+                <Link
+                  href=""
+                  className="p-2"
+                >
                   Log out
                 </Link>
               </DropdownMenuItem>

@@ -14,8 +14,9 @@ export interface LoginPayload {
 }
 
 export interface AuthResponse {
-  data:{
+  data: {
     token: string;
-  }
+    idUser: string;
+  };
   message: string;
 }

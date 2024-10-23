@@ -30,6 +30,7 @@
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
     "jose": "^5.9.3",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.417.0",
     "next": "^14.2.15",
     "qr-scanner": "^1.4.2",
@@ -47,6 +48,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",

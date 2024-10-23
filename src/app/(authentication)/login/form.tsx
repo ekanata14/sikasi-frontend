@@ -1,28 +1,18 @@
 "use client";
 
 import * as React from "react";
-import { login, googleLogin } from "~/services/authApi";
+import { login } from "~/services/authApi";
 import { LoginPayload } from "~/types/authTypes";
-import { useState } from "react";
-
 import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "~/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "~/components/ui/form";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-import { useAuth } from "~/hooks/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import Cookies from "js-cookie";
 
 // Define form schema
 const FormSchema = z.object({
@@ -44,8 +34,11 @@ export function LoginForm() {
   const onSubmit = async (data: LoginPayload) => {
     try {
       const response = await login(data);
-      localStorage.setItem("token", response.data.token);
-      router.push("/dashboard"); // Redirect ke halaman dashboard
+
+      Cookies.set("token", response.data.token, { expires: 1 });
+      Cookies.set("idUser", response.data.idUser, { expires: 1 });
+
+      router.push("/welcome"); // Redirect ke halaman dashboard
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -53,7 +46,10 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4"
+      >
         <FormField
           control={form.control}
           name="nim"
@@ -123,7 +119,10 @@ export function LoginForm() {
             asChild
             className="w-full bg-blue-600 hover:bg-blue-400 shadow-md gap-2 pl-2"
           >
-            <Link href="http://localhost:80/auth/google" className="">
+            <Link
+              href="http://localhost:80/auth/google"
+              className=""
+            >
               <svg
                 className="w-auto max-h-8 bg-white rounded-full p-1"
                 xmlns="http://www.w3.org/2000/svg"
