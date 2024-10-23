@@ -44,12 +44,8 @@ export function LoginForm() {
   const onSubmit = async (data: LoginPayload) => {
     try {
       const response = await login(data);
-      if (response) {
-        console.log("Login success:", response);
-        router.push("/dashboard"); // Redirect ke halaman dashboard
-      } else {
-        console.log("Login failed");
-      }
+      localStorage.setItem("token", response.data.token);
+      router.push("/dashboard"); // Redirect ke halaman dashboard
     } catch (error) {
       console.error("Error submitting form:", error);
     }
