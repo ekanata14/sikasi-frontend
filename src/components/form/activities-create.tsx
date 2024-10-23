@@ -30,22 +30,27 @@ import { format } from "date-fns";
 
 const formSchema = z.object({
   name: z.string().min(2).max(20),
+  place: z.string().min(2).max(20),
   tgl: z.date({
     required_error: "Tanggal pelaksanaan diperlukan.",
   }),
-  sttime: z.string().time({
-    required_error: "Waktu mulai diperlukan.",
+  sttime: z.string().refine((val) => /\d{2}:\d{2}/.test(val), {
+    message: "Waktu mulai diperlukan.",
   }),
-  endtime: z.string().time({
-    required_error: "Waktu selesai diperlukan.",
+  endtime: z.string().refine((val) => /\d{2}:\d{2}/.test(val), {
+    message: "Waktu selesai diperlukan.",
   })
 });
 
-const ActivitiesCreateForm = React.forwardRef(({ className, ...props }, ref) => {
+const ActivitiesCreateForm = React.forwardRef<HTMLFormControlsCollection, React.HTMLAttributes<HTMLFormControlsCollection>>(({ className, ...props }, ref) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      place: "",
+      tgl: null,
+      sttime: "",
+      endtime: "",
     },
   });
 

@@ -3,7 +3,14 @@
 import * as React from "react";
 import { cn } from "~/lib/utils";
 
-const Backdrop = React.forwardRef(({ className, ...props }, ref) => {
+export interface BackdropProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
+  variant?: "cover" | "default";
+  container?: string;
+}
+
+const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(({ className, ...props }, ref) => {
 
   const { variant, container } = props;
 

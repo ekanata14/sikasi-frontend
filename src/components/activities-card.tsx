@@ -23,7 +23,23 @@ import {
 import React from "react";
 import { usePathname } from "next/navigation";
 
-const ActivitiesCard = React.forwardRef(({ className, ...props }, ref) => {
+export interface ActivitiesCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  data: {
+    ukm: {
+      activities: {
+        id: string;
+        name: string;
+        date: string;
+        timeStart: string;
+        timeEnd: string;
+        place: string;
+      }[];
+    };
+  };
+}
+
+const ActivitiesCard = React.forwardRef<HTMLDivElement, ActivitiesCardProps>(({ className, ...props }, ref) => {
   const currentPath = usePathname().split("/").pop();
   const { data } = props;
 

@@ -27,7 +27,8 @@ import { useRef, useState, useEffect } from "react";
 import QrScanner from "qr-scanner";
 import { CameraIcon, UserRoundCheck } from "lucide-react";
 
-const QRScanner = React.forwardRef(({ className, ...props }, ref) => {
+
+const QRScanner = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [open, setOpen] = React.useState(false);
 
@@ -77,7 +78,7 @@ const QRScanner = React.forwardRef(({ className, ...props }, ref) => {
 QRScanner.displayName = "QRScanner";
 
 const Scanner = () => {
-  const scanner = useRef();
+  const scanner = useRef<{ instance: QrScanner | null; preview?: string }>({ instance: null });
   const videoEl = useRef(null);
   const qrBoxEl = useRef(null);
   const [qrOn, setQrOn] = useState(true);
@@ -102,16 +103,16 @@ const Scanner = () => {
   };
 
   const resumeScanner = () => {
-    scanner.current.start();
+    scanner.current.instance.start();
     onHold(false);
   };
 
   const onScanSuccess = (result) => {
     // console.log(result);
 
-    scanner.current.stop();
+    scanner.current.instance.stop();
 
-    scanner.preview = generatePreview(videoEl.current);
+    scanner.current.preview = generatePreview(videoEl.current);
 
     onHold(true);
 
@@ -125,7 +126,7 @@ const Scanner = () => {
 
   useEffect(() => {
     if (videoEl?.current && !scanner.current) {
-      scanner.current = new QrScanner(videoEl?.current, onScanSuccess, {
+      scanner.current.instance = new QrScanner(videoEl?.current, onScanSuccess, {
         onDecodeError: onScanFail,
         preferredCamera: "environment",
         highlightScanRegion: true,
@@ -133,7 +134,7 @@ const Scanner = () => {
         overlay: qrBoxEl?.current || undefined,
       });
 
-      scanner?.current
+      scanner?.current?.instance
         ?.start()
         .then(() => setQrOn(true))
         .catch((err) => {
@@ -143,7 +144,7 @@ const Scanner = () => {
 
     return () => {
       if (!videoEl?.current) {
-        scanner?.current?.stop();
+        scanner?.current?.instance?.stop();
       }
     };
   }, []);
@@ -176,7 +177,7 @@ const Scanner = () => {
 
       {(scannedResult && hold) && (
         <div className={"px-4"}>
-          <img src={scanner.preview} alt="Scanned QR Code" />
+          <img src={scanner.current.preview} alt="Scanned QR Code" />
           <div className="grid gap-2 py-4">
             <div>
               <p className="text-sm">

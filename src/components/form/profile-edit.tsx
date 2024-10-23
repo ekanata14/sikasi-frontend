@@ -30,12 +30,15 @@ const formSchema = z.object({
   name: z.string().min(2).max(20),
 });
 
-const ProfileEditForm = React.forwardRef(({ className, ...props }, ref) => {
+const ProfileEditForm = React.forwardRef<HTMLFormControlsCollection, React.HTMLAttributes<HTMLFormControlsCollection>>(({ className, ...props }, ref) => {
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      phone: "",
+      study: "",
+      picture: null,
     },
   });
 
