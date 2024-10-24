@@ -30,8 +30,9 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/app/(user)/[ukm]/cash/page.tsx"  ],
+    "**/*.tsx", 
+    "src/app/(user)/page/[ukm]/cash/page.tsx"  
+  ],
   "exclude": [
     "node_modules"
   ]

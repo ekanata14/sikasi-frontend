@@ -1,27 +1,43 @@
-import { NextRequest, NextResponse } from "next/server";
+import "server-only";
 
-const protectedRoutes = ["/welcome", "/", "/dashboard"];
-const publicRoutes = ["/login", "/signup"];
+import { NextRequest, NextResponse } from "next/server";
+import axiosInstance from "./lib/axios";
+
+const publicRoutes = ["/login", "/register", "/welcome"];
 
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.includes(path);
+
+  const isAdmin = path.startsWith("/admin");
+
   const isPublicRoute = publicRoutes.includes(path);
 
   const token = req.cookies.get("token");
+  const idUser = req.cookies.get("idUser");
+  
+  // perbaiki jika ada super admin (2)
+  const pageLevel = isAdmin ? "1" : "3";
 
-  console.log(token);
-
-  if (isProtectedRoute && !token) {
-    return NextResponse.redirect(new URL("/login", req.nextUrl));
-  }
-
-  if (isPublicRoute && token) {
-    return NextResponse.redirect(new URL("/welcome", req.nextUrl));
-  }
-
-  if (req.nextUrl.pathname === "/") {
-    return NextResponse.redirect(new URL("/welcome", req.nextUrl));
+  // cek apakah route yang diakses adalah route yang tidak perlu dicek
+  if (!path.startsWith("/users-role/check") && !path.startsWith("/manifest")) {
+    // cek apakah route yang diakses adalah route api yang tidak perlu dicek
+    if(!path.startsWith("/api")){
+      try {
+        const headers = { "Authorization": `Bearer ${token.value}` };
+        const nickname = path.split("/")[2];
+  
+        const response = await axiosInstance.get(`/users-role/check/${idUser.value}/${pageLevel}/${nickname}`, { headers });
+  
+        if(response.data.data.access == false || !response.data.data.access) {
+          if(!isPublicRoute && token){
+            return NextResponse.redirect(new URL("/welcome", req.nextUrl));
+          }
+        }
+  
+      } catch (error) {
+        // console.log("Error Middleware:", error);
+      }
+    }
   }
 
   return NextResponse.next();
