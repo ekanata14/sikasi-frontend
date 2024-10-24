@@ -73,17 +73,15 @@ export function LoginForm() {
         <FormField
           control={form.control}
           name="nim"
-          render={({ field }) => (
-            // @ts-ignore
+          render={({ field, fieldState }) => (
             <FormItem>
-              {/* @ts-ignore */}
               <FormLabel>NIM</FormLabel>
-              {/* @ts-ignore */}
               <FormControl>
                 <Input
                   type="text"
                   autoComplete="nim"
                   placeholder="NIM pengguna"
+                  className={cn(fieldState?.error && "border-[1.5px] border-red-500 outline-[1.5px] outline-red-500")}
                   {...field}
                 />
               </FormControl>
@@ -94,8 +92,7 @@ export function LoginForm() {
         <FormField
           control={form.control}
           name="password"
-          render={({ field, error }) => (
-            // @ts-ignore
+          render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel className={cn("flex justify-between")}>
                 Password{" "}
@@ -111,12 +108,11 @@ export function LoginForm() {
                   type="password"
                   autoComplete="current-password"
                   placeholder="password"
+                  className={cn(fieldState?.error && "border-[1.5px] border-red-500 outline-[1.5px] outline-red-500")}
                   {...field}
                 />
               </FormControl>
               <FormMessage />
-              {/* @ts-ignore */}
-              {error && <FormMessage>{error}</FormMessage>}
             </FormItem>
           )}
         />
