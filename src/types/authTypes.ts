@@ -14,9 +14,12 @@ export interface LoginPayload {
 }
 
 export interface AuthResponse {
+  status: boolean;
+  code: number;
+  errors: Array<unknown>;
+  message: string;
   data: {
     token: string;
-    idUser: string;
+    idUser: number;
   };
-  message: string;
 }

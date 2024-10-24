@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
+import { LoaderIcon } from "lucide-react";
 
 // Define form schema
 const FormSchema = z.object({
@@ -22,6 +24,8 @@ const FormSchema = z.object({
 
 export function LoginForm() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   const form = useForm<LoginPayload>({
     resolver: zodResolver(FormSchema),
@@ -32,20 +36,36 @@ export function LoginForm() {
   });
 
   const onSubmit = async (data: LoginPayload) => {
+    setIsLoading(true);
+
     try {
       const response = await login(data);
 
-      Cookies.set("token", response.data.token, { expires: 1 });
-      Cookies.set("idUser", response.data.idUser, { expires: 1 });
+      if (response.status) {
+        Cookies.set("token", response.data.token, { expires: 1 });
+        Cookies.set("idUser ", response.data.idUser.toString(), { expires: 1 });
 
-      router.push("/welcome"); // Redirect ke halaman dashboard
+        router.push("/welcome");
+      } else {
+        setErrorMessage("Login gagal. Silakan periksa NIM dan password Anda dan coba lagi.");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
+
+      setErrorMessage("Terjadi kesalahan saat mengirimkan formulir. Silakan coba lagi.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <Form {...form}>
+      {errorMessage && ( // Tampilkan Alert jika ada pesan error
+        <Alert variant="destructive">
+          <AlertTitle>Login Gagal</AlertTitle>
+          <AlertDescription>{errorMessage}</AlertDescription>
+        </Alert>
+      )}
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-4"
@@ -102,9 +122,11 @@ export function LoginForm() {
         />
         <div className="grid gap-2">
           <Button
+            disabled={isLoading}
             className={cn("w-full bg-blue-600 hover:bg-blue-400")}
             type="submit"
           >
+            {isLoading && <LoaderIcon className="w-5 h-5 animate-spin" />}
             Simpan
           </Button>
           {/* Divide Line */}
