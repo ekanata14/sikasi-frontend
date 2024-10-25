@@ -1,4 +1,5 @@
 import { Montserrat as FontSans } from "next/font/google";
+import { Toaster } from "~/components/ui/toaster";
 import { cn } from "~/lib/utils";
 
 import "~/styles/globals.css";
@@ -18,7 +19,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cn("font-sans antialiased bg-zinc-50", "min-h-screen", fontSans.variable)}>{children}</body>
+      <body className={cn("font-sans antialiased bg-zinc-50", "min-h-screen", fontSans.variable)}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

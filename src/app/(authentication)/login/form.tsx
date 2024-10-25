@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 import { LoaderIcon } from "lucide-react";
+import { toast } from "~/hooks/use-toast";
 
 // Define form schema
 const FormSchema = z.object({
@@ -43,16 +44,28 @@ export function LoginForm() {
 
       if (response.status) {
         Cookies.set("token", response.data.token, { expires: 1 });
-        Cookies.set("idUser ", response.data.idUser.toString(), { expires: 1 });
+        Cookies.set("idUser", response.data.idUser.toString(), { expires: 1 });
 
         router.push("/welcome");
       } else {
         setErrorMessage("Login gagal. Silakan periksa NIM dan password Anda dan coba lagi.");
+
+        toast({
+          variant: "destructive",
+          title: "Ups! Terjadi kesalahan.",
+          description: "Login gagal. Silakan periksa NIM dan password Anda dan coba lagi.",
+        });
       }
     } catch (error) {
       console.error("Error submitting form:", error);
 
       setErrorMessage("Terjadi kesalahan saat mengirimkan formulir. Silakan coba lagi.");
+
+      toast({
+        variant: "destructive",
+        title: "Ups! Terjadi kesalahan.",
+        description: "Terjadi kesalahan saat mengirimkan formulir. Silakan coba lagi.",
+      });
     } finally {
       setIsLoading(false);
     }
