@@ -8,7 +8,10 @@ import { LogOut } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { UserData, UserResponse } from "~/types/userTypes";
 import { useToast } from "~/hooks/use-toast";
-import { OrganizationData, OrganizationResponse } from "~/types/organizationTypes";
+import {
+  OrganizationData,
+  OrganizationResponse,
+} from "~/types/organizationTypes";
 import { getDataFromCookies, useDataFetcher } from "~/hooks/use-data-fetcher";
 import { OrganizationList } from "~/components/welcome";
 
@@ -20,7 +23,9 @@ const handleLogout = (): void => {
   window.location.href = "/login";
 };
 export default function WelcomePage() {
-  const [userOrganizationData, setUserOrganizationData] = React.useState<OrganizationData[]>([]);
+  const [userOrganizationData, setUserOrganizationData] = React.useState<
+    OrganizationData[]
+  >([]);
   const [userData, setUserData] = React.useState<UserData>({
     id: 0,
     name: "",
@@ -38,7 +43,10 @@ export default function WelcomePage() {
 
   const { toast } = useToast();
 
-  const idUser: string = getDataFromCookies("idUser");
+  let idUser: string;
+  if (typeof window !== "undefined") {
+    idUser = getDataFromCookies("idUser");
+  }
 
   useDataFetcher<UserResponse>({
     endpoint: `/users/${idUser}`,
@@ -64,7 +72,8 @@ export default function WelcomePage() {
         toast({
           variant: "destructive",
           title: "Ups! Terjadi kesalahan.",
-          description: "Terjadi kesalahan saat mengambil data pengguna. Silakan coba lagi.",
+          description:
+            "Terjadi kesalahan saat mengambil data pengguna. Silakan coba lagi.",
         });
       }
     },
@@ -83,7 +92,12 @@ export default function WelcomePage() {
   return (
     <main className={cn("grid py-10 gap-4", "lg:block")}>
       {/* Container */}
-      <div className={cn("max-w-80 mx-auto grid h-full gap-4 relative", "lg:max-w-7xl lg:flex lg:flex-col lg:bg-white lg:px-8 lg:py-10 lg:rounded-md lg:shadow-md")}>
+      <div
+        className={cn(
+          "max-w-80 mx-auto grid h-full gap-4 relative",
+          "lg:max-w-7xl lg:flex lg:flex-col lg:bg-white lg:px-8 lg:py-10 lg:rounded-md lg:shadow-md"
+        )}
+      >
         {/* Logout Button */}
         <button
           onClick={handleLogout}
@@ -104,8 +118,12 @@ export default function WelcomePage() {
 
         {/* Page Header */}
         <header>
-          <h1 className="font-bold text-lg">Selamat Datang Kembali, {userData.name}</h1>
-          <p className="text-sm">Pilih salah satu UKM untuk melihat data anda pada UKM terdaftar.</p>
+          <h1 className="font-bold text-lg">
+            Selamat Datang Kembali, {userData.name}
+          </h1>
+          <p className="text-sm">
+            Pilih salah satu UKM untuk melihat data anda pada UKM terdaftar.
+          </p>
         </header>
 
         {/* Organizations Card Section */}
@@ -113,7 +131,12 @@ export default function WelcomePage() {
       </div>
 
       {/* Backdrop Container */}
-      <Backdrop container={cn("hidden", "lg:block lg:absolute lg:min-h-[110vh] lg:opacity-60 lg:top-0 rotate-180 lg:-z-10")} />
+      <Backdrop
+        container={cn(
+          "hidden",
+          "lg:block lg:absolute lg:min-h-[110vh] lg:opacity-60 lg:top-0 rotate-180 lg:-z-10"
+        )}
+      />
     </main>
   );
 }

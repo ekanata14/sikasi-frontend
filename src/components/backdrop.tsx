@@ -8,6 +8,7 @@ export interface BackdropProps
   asChild?: boolean;
   variant?: "cover" | "default";
   container?: string;
+  align?: string;
 }
 
 const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(({ className, ...props }, ref) => {
