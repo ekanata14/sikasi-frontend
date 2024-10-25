@@ -2,26 +2,24 @@
 
 import * as React from "react";
 
-import { useState, useEffect } from "react";
 import { register } from "~/services/authApi";
 import { RegisterPayload } from "~/types/authTypes";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "~/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "~/components/ui/form";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { toast } from "~/hooks/use-toast";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useDataFetcher } from "~/hooks/use-data-fetcher";
+import { DepartmentData, DepartmentResponse } from "~/types/departmentTypes";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
+import Cookies from "js-cookie";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
+import { LoaderIcon } from "lucide-react";
 
 const FormSchema = z
   .object({
@@ -29,17 +27,20 @@ const FormSchema = z
     nim: z.string().min(9, { message: "Pastikan NIM benar" }),
     email: z.string().email(),
     password: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
-    confirm_password: z
-      .string()
-      .min(1, { message: "Kolom tidak boleh kosong" }),
+    confirm_password: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
+    department_id: z.string().min(1, { message: "Kolom tidak boleh kosong" }),
   })
   .refine((data) => data.password === data.confirm_password, {
     message: "Password tidak cocok",
     path: ["confirm_password"],
   });
 
-export function RegisterForm(){ 
+export function RegisterForm() {
   const router = useRouter();
+  const [error, setError] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [departmentData, setDepartmentData] = React.useState<DepartmentData[]>([]);
+
   const form = useForm<RegisterPayload>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -48,88 +49,88 @@ export function RegisterForm(){
       email: "",
       password: "",
       confirm_password: "",
+      department_id: 0,
     },
   });
 
   const onSubmit = async (data: RegisterPayload) => {
+    const formData: RegisterPayload = {
+      ...data,
+      department_id: parseInt(data.department_id.toString()),
+    };
+
+    setIsLoading(true);
+
     try {
-      const response = await register(data); // Fungsi register untuk submit data
-      if (response) {
+      const response = await register(formData);
+
+      if (response.status) {
         console.log("Register success:", response);
-        router.push("/dashboard"); // Redirect ke halaman dashboard
+
+        Cookies.set("token", response.data.token, { expires: 1 });
+        Cookies.set("idUser", response.data.idUser.toString(), { expires: 1 });
+
+        router.push("/welcome");
       } else {
-        console.log("Register failed");
-        setError("Register failed");
+        setError("Registrasi gagal. Pastikan anda memasukkan seluruh input dengan benar dan silahkan coba lagi.");
+
+        toast({
+          variant: "destructive",
+          title: "Ups! Terjadi kesalahan.",
+          description: "Registrasi gagal. Pastikan anda memasukkan seluruh input dengan benar dan silahkan coba lagi.",
+        });
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      setError('Error Submitting Form');
+
+      setError("Terjadi kesalahan saat mengirimkan formulir. Silakan coba lagi.");
+
+      toast({
+        variant: "destructive",
+        title: "Ups! Terjadi kesalahan.",
+        description: "Terjadi kesalahan saat mengirimkan formulir. Silakan coba lagi.",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // const { register } = useAuth();
-
-  const [error, setError] = React.useState(null);
-
-  // const onSubmit = async (data: z.infer<typeof FormSchema>, event) => {
-  //   console.log(data);
-  //   event.preventDefault();
-
-  //   toast({
-  //     title: "Mengirim data..."
-  //   });
-
-  //   const name = data.name;
-  //   const nim = data.nim;
-  //   const email = data.email;
-  //   const password = data.password;
-
-  //   await register({
-  //     name,
-  //     nim,
-  //     email,
-  //     password,
-  //     setError
-  //   });
-
-  //   fetch("http://localhost:80/api/register", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       name: data.name,
-  //       email: data.email,
-  //       password: data.password,
-  //       nim: data.nim,
-  //     }),
-  //   })
-  //     .then(async (response) => {
-  //       const data = await response.json();
-  //       console.log(data);
-  //       if (data.status) {
-  //         toast({
-  //           title: "Terkirim"
-  //         });
-  //       }
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
+  useDataFetcher<DepartmentResponse>({
+    endpoint: "/departments/all",
+    onSuccess: (data) => {
+      setDepartmentData(data.data);
+    },
+    onError: (error) => {
+      console.error("Error fetching department data:", error);
+    },
+  });
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      {error && ( // Tampilkan Alert jika ada pesan error
+        <Alert variant="destructive">
+          <AlertTitle>Login Gagal</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4"
+      >
         <FormField
           control={form.control}
           name="name"
-          render={({ field }) => (
-            // @ts-ignore
+          render={({ field, fieldState }) => (
             <FormItem>
-              {/* @ts-ignore */}
               <FormLabel>Nama</FormLabel>
-              {/* @ts-ignore */}
+
               <FormControl>
-                <Input type="text" placeholder="Nama Lengkap" {...field} />
+                <Input
+                  type="text"
+                  placeholder="Nama Lengkap"
+                  className={cn(fieldState?.error && "border-[1.5px] border-red-500 outline-[1.5px] outline-red-500")}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -138,16 +139,15 @@ export function RegisterForm(){
         <FormField
           control={form.control}
           name="nim"
-          render={({ field }) => (
-            // @ts-ignore
+          render={({ field, fieldState }) => (
             <FormItem>
-              {/* @ts-ignore */}
               <FormLabel>NIM</FormLabel>
-              {/* @ts-ignore */}
+
               <FormControl>
                 <Input
                   type="text"
                   placeholder="NIM"
+                  className={cn(fieldState?.error && "border-[1.5px] border-red-500 outline-[1.5px] outline-red-500")}
                   {...field}
                 />
               </FormControl>
@@ -158,14 +158,17 @@ export function RegisterForm(){
         <FormField
           control={form.control}
           name="email"
-          render={({ field }) => (
-            // @ts-ignore
+          render={({ field, fieldState }) => (
             <FormItem>
-              {/* @ts-ignore */}
               <FormLabel>Email</FormLabel>
-              {/* @ts-ignore */}
+
               <FormControl>
-                <Input type="email" placeholder="Email" {...field} />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  className={cn(fieldState?.error && "border-[1.5px] border-red-500 outline-[1.5px] outline-red-500")}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -174,14 +177,17 @@ export function RegisterForm(){
         <FormField
           control={form.control}
           name="password"
-          render={({ field }) => (
-            // @ts-ignore
+          render={({ field, fieldState }) => (
             <FormItem>
-              {/* @ts-ignore */}
               <FormLabel>Password</FormLabel>
-              {/* @ts-ignore */}
+
               <FormControl>
-                <Input placeholder="********" {...field} type="password" />
+                <Input
+                  type="password"
+                  placeholder="********"
+                  className={cn(fieldState?.error && "border-[1.5px] border-red-500 outline-[1.5px] outline-red-500")}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -191,29 +197,63 @@ export function RegisterForm(){
         <FormField
           control={form.control}
           name="confirm_password"
-          render={({ field }) => (
-            // @ts-ignore
+          render={({ field, fieldState }) => (
             <FormItem>
-              {/* @ts-ignore */}
               <FormLabel>Konfirmasi Password</FormLabel>
-              {/* @ts-ignore */}
+
               <FormControl>
-                <Input placeholder="********" {...field} type="password"/>
+                <Input
+                  type="password"
+                  placeholder="********"
+                  className={cn(fieldState?.error && "border-[1.5px] border-red-500 outline-[1.5px] outline-red-500")}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
-              {/* @ts-ignore */}
-              {error && <FormMessage>{error}</FormMessage>}
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="department_id"
+          render={({ field, fieldState }) => (
+            <FormItem>
+              <FormLabel>Jurusan</FormLabel>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={field.value.toString()}
+              >
+                <FormControl>
+                  <SelectTrigger className={cn(fieldState?.error && "border-[1.5px] border-red-500 outline-[1.5px] outline-red-500")}>
+                    <SelectValue className="text-black">{field.value ? departmentData.find((dep) => dep.id.toString() === field.value)?.name : "Pilih Jurusan"}</SelectValue>
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {departmentData.map((department) => (
+                    <SelectItem
+                      key={department.id}
+                      value={department.id.toString()}
+                    >
+                      {department.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <div className="grid gap-2">
-          {/* @ts-ignore */}
           <Button
+            disabled={isLoading}
             className={cn("w-full bg-blue-500 hover:bg-blue-400")}
             type="submit"
           >
+            {isLoading && <LoaderIcon className="w-5 h-5 animate-spin" />}
             Simpan
           </Button>
+
           {/* Divide Line */}
           <div className="grid grid-cols-7 justify-center items-center text-center gap-2 text-slate-800">
             <span className="col-span-3 border-slate-800 border-b h-1"></span>
@@ -222,12 +262,11 @@ export function RegisterForm(){
           </div>
 
           {/* Sign in Google */}
-          {/* @ts-ignore */}
           <Button
             asChild
             className="w-full bg-blue-500 hover:bg-blue-400 shadow-md gap-2 pl-2"
           >
-            <Link href="/login" className="">
+            <Link href="/login">
               <svg
                 className="w-auto max-h-8 bg-white rounded-full p-1"
                 xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +299,7 @@ export function RegisterForm(){
       </form>
     </Form>
   );
-};
+}
 
 RegisterForm.displayName = "RegisterForm";
 
