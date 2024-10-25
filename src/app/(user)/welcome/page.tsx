@@ -30,7 +30,7 @@ export default function RegisterPage() {
 
   // Dummy callback function
   const UKMCard = UKM.map(ukm => 
-    <Link href="page/ksl" key={ukm.abbreviation} >
+    <Link href="ukm/ksl" key={ukm.abbreviation} >
       <AspectRatio ratio={16 / 7} className="bg-white w-full rounded-md shadow-md p-2 hover:text-blue-500 hover:bg-slate-100 m-1">
         <div className="grid grid-cols-5 h-full items-center">
           <div className="col-span-2 flex justify-center items-center">
