@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx", 
-    "src/app/(user)/page/[ukm]/cash/page.tsx"  
+    "src/app/(user)/ukm/[ukm]/(partials)/page.tsx"  
   ],
   "exclude": [
     "node_modules"
