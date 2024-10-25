@@ -6,6 +6,7 @@ export interface RegisterPayload {
   email: string;
   password: string;
   confirm_password: string;
+  department_id: string | number;
 }
 
 export interface LoginPayload {
