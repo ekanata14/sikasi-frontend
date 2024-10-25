@@ -15,7 +15,7 @@ export default async function middleware(req: NextRequest) {
   const token = req.cookies.get("token");
   const idUser = req.cookies.get("idUser");
   
-  // TODO: perbaiki jika ada super admin (2)
+  // perbaiki jika ada super admin (2)
   const pageLevel = isAdmin ? "1" : "3";
 
   // cek apakah route yang diakses adalah route yang tidak perlu dicek
@@ -25,8 +25,6 @@ export default async function middleware(req: NextRequest) {
       try {
         const headers = { "Authorization": `Bearer ${token.value}` };
         const nickname = path.split("/")[2];
-
-        await axiosInstance.get(`/api/organization/nickname/${nickname}`, { headers });
   
         const response = await axiosInstance.get(`/users-role/check/${idUser.value}/${pageLevel}/${nickname}`, { headers });
   

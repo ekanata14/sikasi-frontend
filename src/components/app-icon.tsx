@@ -7,7 +7,7 @@ const AppIcon = React.forwardRef<HTMLImageElement, HTMLAttributes<HTMLImageEleme
     <>
       <Image
         className={cn("mx-auto w-auto h-auto", className)}
-        src="/assets/images/stikom_logo.png"
+        src="/assets/images/logo192.png"
         width={640}
         height={386}
         priority={true}

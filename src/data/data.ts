@@ -29,6 +29,30 @@ export const Data = {
         timeStart: "15.00",
         timeEnd: "18.00",
       },
+      {
+        id: "4",
+        name: "Pelatihan",
+        date: "26 September 2024",
+        place: "Laboratorium Networing Lt.4",
+        timeStart: "15.00",
+        timeEnd: "18.00",
+      },
+      {
+        id: "5",
+        name: "Pelatihan",
+        date: "30 September 2024",
+        place: "Laboratorium Networing Lt.4",
+        timeStart: "15.00",
+        timeEnd: "18.00",
+      },
+      {
+        id: "6",
+        name: "Pelatihan",
+        date: "31 September 2024",
+        place: "Laboratorium Networing Lt.4",
+        timeStart: "15.00",
+        timeEnd: "18.00",
+      },
     ],
     cash: [
       {
